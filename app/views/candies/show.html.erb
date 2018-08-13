@@ -2,17 +2,13 @@
 <p><%= @message %></p>
 <% end %>
 
-<div id="candy result"></div>
-<a href="#" class="js-next" data-id="<%=@product.id%>">Next Candy</a>
-<h1 class="candyName"><%= @candy.name %></p><br>
-<p class="candyTaste"><%= @candy.taste %> candy</p><br>
-<p class="candyAppetite"><%= @candy.appetite %></p><br>
-<p class="candyCount"><%= @candy.count %></p><br>
-<button class="Edit" data-id="<%= product.id %>">More Info</button>
+<div id="candy"></div>
+<a href="#" class="js-next" data-id="<%=@candy.id%>">Next Candy</a>
+<h2 class="candyName">Candy: <%= @candy.name %></h2>
+<p class"candyTaste">Taste: <%= @candy.taste %> candy</p>
+<p class="candyAppetite">Appetite: <%= @candy.appetite %></p>
+<p class="candyCount">Remaining Count: <%= @candy.count %></p><br>
 
- <button id="Edit">Edit Candy</button>
-<button id="See Candies">See Candies</button>
-<button id="Delete">Delete Candy</button>
 
     <script type="text/javascript" charset="utf-8">
 $(function () {
@@ -34,10 +30,10 @@ $(function () {
 
 
 
-<%= link_to 'Edit Candy', edit_candy_path(@candy) %>
- <%= link_to 'See candies', candies_path %>
- <%= link_to 'Delete candy', delete_path %>
- <%= link_to 'Log Out', signout_path%>
+<button><%= link_to 'Edit Candy', edit_candy_path(@candy) %></button>
+ <button><%= link_to 'See candies', candies_path %></button>
+ <button><%= link_to 'Delete candy', delete_path %></button>
+ <button><%= link_to 'Log Out', signout_path%></button>
 <% else %>
 
 <%= link_to 'Log Out', signout_path%>

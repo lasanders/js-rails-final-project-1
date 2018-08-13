@@ -26,6 +26,7 @@
     <script type="text/javascript" charset="utf-8">
 $(function () {
   $('form').submit( function(event) {
+    event.preventDefault()
     var values = $(this).serialize()
     var posting = $.post('/candies', values);
     posting.done(function(data) {
@@ -35,8 +36,8 @@ $(function () {
       $(".candyAppetite").text(data["appetite"]);
       $(".candyCount").text(data["count"]);
       // re-set the id to current on the link
-      $(".js-next").attr("data-id", data["id"]);
-    });
+
+
     });
   });
 });

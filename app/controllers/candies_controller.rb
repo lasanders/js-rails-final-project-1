@@ -7,8 +7,11 @@ render json: @candies
 end
 
 def show
-  # @candy= Candy.find(params[:id])
-render json: @candy
+  @candy= Candy.find(params[:id])
+  respond_to do |format|
+    format.html {render :show}
+    format.json {render json: @candy}
+  end
 end
 
 
@@ -21,7 +24,7 @@ def create
 @candy= Candy.new(candy_params)
     if current_user.employee && @candy.save
         # redirect_to candy_path(@candy)
-        render json: candy, status: 201
+        render json: @candy, status: 201
       else
         candy_error
       render json: new
