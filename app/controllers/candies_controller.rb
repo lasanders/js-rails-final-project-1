@@ -3,7 +3,10 @@ before_action:set_candy, only: [:show, :edit, :update, :destroy]
 def index
 @candies= Candy.all
 @purchases= Purchase.all
-render json: @candies
+respond_to do |format|
+  format.html {render :index}
+  # format.json {render json: @candy}
+end
 end
 
 def show
@@ -52,9 +55,10 @@ def destroy
 @candy= Candy.last
         @candy.destroy
     # redirect_to candies_path
-    render json: candies
+    respond_to do |format|
+      format.html {render :index}
 end
-
+end
 
 private
 

@@ -21,29 +21,3 @@
 
  <%= f.submit %>
 <% end %>
-
-<div id="candy result"></div>
-<h2 class="candyName">Candy: <%= @candy.name %></h2>
-<p class"candyTaste">Taste: <%= @candy.taste %> candy</p>
-<p class="candyAppetite">Appetite: <%= @candy.appetite %></p>
-<p class="candyCount">Remaining Count: <%= @candy.count %></p><br>
-
-    <script type="text/javascript" charset="utf-8">
-$(function () {
-  $('form').submit( function(event) {
-    event.preventDefault()
-    var values = $(this).serialize()
-    var posting = $.post('/candies/:id', values);
-    posting.done(function(data) {
-      var candy = data
-      $(".candyName").text(data["name"]);
-      $(".candyTaste").text(data["taste"]);
-      $(".candyAppetite").text(data["appetite"]);
-      $(".candyCount").text(data["count"]);
-      // re-set the id to current on the link
-
-
-    });
-  });
-});
-</script>

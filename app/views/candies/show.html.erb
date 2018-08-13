@@ -15,10 +15,10 @@ $(function () {
   $(".js-next").on("click", function() {
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
     $.get("/candies/" + nextId + ".json", function(data) {
-      $(".candyName").html(data["name"]);
-      $(".candyTaste").html(data["taste"]);
-      $(".candyAppetite").html(data["appetite"]);
-      $(".candyCount").html(data["count"]);
+      $(".candyName").text(data["name"]);
+      $(".candyTaste").text(data["taste"]);
+      $(".candyAppetite").text(data["appetite"]);
+      $(".candyCount").text(data["count"]);
       // re-set the id to current on the link
       $(".js-next").attr("data-id", data["id"]);
     });
