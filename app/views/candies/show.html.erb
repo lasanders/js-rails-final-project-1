@@ -2,32 +2,53 @@
 <p><%= @message %></p>
 <% end %>
 
-<H1><%= @candy.name %></p></H1>
-   <p>Cost: <%= @candy.cost %></p><br>
-    <p>Taste: <%= @candy.taste %> candy</p><br>
-    <p>Appetite: <%= @candy.appetite %></p><br>
-    <p>Count: <%= @candy.count %></p><br>
-    
+<div id="candy result"></div>
+<a href="#" class="js-next" data-id="<%=@product.id%>">Next Candy</a>
+<h1 class="candyName"><%= @candy.name %></p><br>
+<p class="candyTaste"><%= @candy.taste %> candy</p><br>
+<p class="candyAppetite"><%= @candy.appetite %></p><br>
+<p class="candyCount"><%= @candy.count %></p><br>
+<button class="Edit" data-id="<%= product.id %>">More Info</button>
+
+ <button id="Edit">Edit Candy</button>
+<button id="See Candies">See Candies</button>
+<button id="Delete">Delete Candy</button>
+
+    <script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-next").on("click", function() {
+    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    $.get("/candies/" + nextId + ".json", function(data) {
+      $(".candyName").html(data["name"]);
+      $(".candyTaste").html(data["taste"]);
+      $(".candyAppetite").html(data["appetite"]);
+      $(".candyCount").html(data["count"]);
+      // re-set the id to current on the link
+      $(".js-next").attr("data-id", data["id"]);
+    });
+  });
+});
+</script>
+
  <% if current_user.employee %>
 
 
+
 <%= link_to 'Edit Candy', edit_candy_path(@candy) %>
- <%= link_to 'See candies', candies_path %> 
+ <%= link_to 'See candies', candies_path %>
  <%= link_to 'Delete candy', delete_path %>
  <%= link_to 'Log Out', signout_path%>
 <% else %>
 
 <%= link_to 'Log Out', signout_path%>
-<%= link_to 'See candies', candies_path %> 
+<%= link_to 'See candies', candies_path %>
 <%= form_tag("/purchases", method: "post") do %>
  <%= hidden_field_tag :user_id, value = current_user.id %><br />
  <%= hidden_field_tag :candy_id, value = @candy.id %><br />
  <%= label_tag :payment_type %><br><%= text_field_tag :payment_type %>
 
 
-  
+
 <div class="actions"><%= submit_tag 'Purchase Candy', :class => 'btn btn-primary' %></div>
 <% end %>
 <% end %>
-
-

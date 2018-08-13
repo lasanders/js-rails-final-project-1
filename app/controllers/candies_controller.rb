@@ -3,12 +3,12 @@ before_action:set_candy, only: [:show, :edit, :update, :destroy]
 def index
 @candies= Candy.all
 @purchases= Purchase.all
-
+render json: @candies
 end
 
 def show
-  @candy= Candy.find(params[:id])
-
+  # @candy= Candy.find(params[:id])
+render json: @candy
 end
 
 
@@ -19,11 +19,12 @@ end
 
 def create
 @candy= Candy.new(candy_params)
-    if current_user.employee && @candy.save 
-        redirect_to candy_path(@candy)
+    if current_user.employee && @candy.save
+        # redirect_to candy_path(@candy)
+        render json: candy, status: 201
       else
         candy_error
-render:new 
+      render json: new
     end
 end
 
@@ -34,10 +35,11 @@ end
 def update
 @candy= Candy.find(params[:id])
     if current_user.employee  && @candy.update(candy_params)
-        redirect_to @candy
+        # redirect_to @candy
+         render json: @candy
       else
           candy_error
-render:edit 
+        render json :edit
     end
 end
 
@@ -46,7 +48,8 @@ def destroy
 
 @candy= Candy.last
         @candy.destroy
-    redirect_to candies_path
+    # redirect_to candies_path
+    render json: candies
 end
 
 
@@ -62,5 +65,3 @@ params.require(:candy).permit(:name, :taste, :cost, :appetite, :count, user_attr
 end
 
 end
-
-

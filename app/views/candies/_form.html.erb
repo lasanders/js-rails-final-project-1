@@ -3,7 +3,7 @@
 <% if @candy.errors.any? %>
     <p><%= @error %></p>
 <% end %>
-  
+
 <%= f.label :name %><br>
 <%= f.text_field :name %><br>
 
@@ -21,3 +21,23 @@
 
  <%= f.submit %>
 <% end %>
+
+
+    <script type="text/javascript" charset="utf-8">
+$(function () {
+  $('form').submit( function(event) {
+    var values = $(this).serialize()
+    var posting = $.post('/candies', values);
+    posting.done(function(data) {
+      var candy = data
+      $(".candyName").text(data["name"]);
+      $(".candyTaste").text(data["taste"]);
+      $(".candyAppetite").text(data["appetite"]);
+      $(".candyCount").text(data["count"]);
+      // re-set the id to current on the link
+      $(".js-next").attr("data-id", data["id"]);
+    });
+    });
+  });
+});
+</script>
