@@ -2,25 +2,28 @@
 <p><%= @message %></p>
 <% end %>
 
-<div id="candy"></div>
-<a href="#" class="js-next" data-id="<%=@candy.id%>">Next Candy</a>
+<div id="candyResult">
 <h2 class="candyName">Candy: <%= @candy.name %></h2>
+<a href="#" class="js-next" data-id="<%=@candy.id%>">Next Candy</a>
 <p class"candyTaste">Taste: <%= @candy.taste %> candy</p>
 <p class="candyAppetite">Appetite: <%= @candy.appetite %></p>
+<p class="candyCost">Cost: $<%= @candy.cost %></p><br>
 <p class="candyCount">Remaining Count: <%= @candy.count %></p><br>
-
+</div>
 
     <script type="text/javascript" charset="utf-8">
 $(function () {
   $(".js-next").on("click", function() {
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-    $.get("/candies/" + nextId + ".json", function(data) {
-      $(".candyName").text(data["name"]);
-      $(".candyTaste").text(data["taste"]);
-      $(".candyAppetite").text(data["appetite"]);
-      $(".candyCount").text(data["count"]);
+    $.get("/candies/" + nextId + .json, function(data) {
+          var candy = data;
+      $("#candyName").text(candy["name"]);
+      $("#candyTaste").text(candy["taste"]);
+      $("#candyAppetite").text(candy["appetite"]);
+      $("#candyCost").text(candy["cost"]);
+      $("#candyCount").text(candy["count"]);
       // re-set the id to current on the link
-      $(".js-next").attr("data-id", data["id"]);
+      $(".js-next").attr("data-id", candy["id"]);
     });
   });
 });
