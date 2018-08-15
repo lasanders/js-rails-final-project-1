@@ -26,7 +26,6 @@ end
 def create
 @candy= Candy.new(candy_params)
     if current_user.employee && @candy.save
-        # redirect_to candy_path(@candy)
         respond_to do |format|
           format.html {render :show}
           format.json {render json: @candy}
