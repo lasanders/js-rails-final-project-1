@@ -27,7 +27,10 @@ def create
 @candy= Candy.new(candy_params)
     if current_user.employee && @candy.save
         # redirect_to candy_path(@candy)
-        render json: @candy, status: 201
+        respond_to do |format|
+          format.html {render :show}
+          format.json {render json: @candy}
+        end
       else
         candy_error
       render json: new
