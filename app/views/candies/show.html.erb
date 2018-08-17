@@ -3,51 +3,44 @@
 <% end %>
 
 <div id="candyResult">
-<h2 class="candyName">Candy: <%= @candy.name %></h2>
-<a href="#" class="js-next" data-id="<%=@candy.id%>">Next Candy</a>
-<p class"candyTaste">Taste: <%= @candy.taste %> candy</p>
-<p class="candyAppetite">Appetite: <%= @candy.appetite %></p>
-<p class="candyCost">Cost: $<%= @candy.cost %></p><br>
-<p class="candyCount">Remaining Count: <%= @candy.count %></p><br>
+  <h2 class="candyName">Candy: <%= @candy.name %></h2>
+  <a href="#" class="js-next" data-id="<%=@candy.id%>">Next Candy</a>
+  <p class"candyTaste">Taste: <%= @candy.taste %> candy</p>
+  <p class="candyAppetite">Appetite: <%= @candy.appetite %></p>
+  <p class="candyCost">Cost: $<%= @candy.cost %></p><br>
+  <p class="candyCount">Remaining Count: <%= @candy.count %></p><br>
 </div>
 
-    <script type="text/javascript" charset="utf-8">
+<% if current_user.employee %>
+<button><%= link_to 'Edit Candy', edit_candy_path(@candy) %></button>
+<button><%= link_to 'See candies', candies_path %></button>
+<button><%= link_to 'Delete candy', delete_path %></button>
+<button><%= link_to 'Log Out', signout_path%></button>
+<% else %>
+<%= link_to 'Log Out', signout_path%>
+<%= link_to 'See candies', candies_path %>
+<%= form_tag("/purchases", method: "post") do %>
+<%= hidden_field_tag :user_id, value = current_user.id %><br />
+<%= hidden_field_tag :candy_id, value = @candy.id %><br />
+<%= label_tag :payment_type %><br><%= text_field_tag :payment_type %>
+<div class="actions"><%= submit_tag 'Purchase Candy', :class => 'btn btn-primary' %></div>
+<% end %>
+<% end %>
+
+<script type="text/javascript" charset="utf-8">
 $(function () {
   $(".js-next").on("click", function() {
+
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-    $.get("/candies/" + nextId + .json, function(data) {
-          var candy = data;
-      $("#candyName").text(candy["name"]);
-      $("#candyTaste").text(candy["taste"]);
-      $("#candyAppetite").text(candy["appetite"]);
-      $("#candyCost").text(candy["cost"]);
-      $("#candyCount").text(candy["count"]);
-      // re-set the id to current on the link
-      $(".js-next").attr("data-id", candy["id"]);
+    $.getJSON("/candies/" + nextId, function(data) {
+      $(".candyName").text(data.name);
+      $(".candyTaste").text(data.taste);
+      $(".candyAppetite").text(data.appetite);
+      $(".candyCost").text(data.cost);
+      $(".candyCount").text(data.count);
+
+      // $(".js-next").attr("data-id", data.id);
     });
   });
 });
 </script>
-
- <% if current_user.employee %>
-
-
-
-<button><%= link_to 'Edit Candy', edit_candy_path(@candy) %></button>
- <button><%= link_to 'See candies', candies_path %></button>
- <button><%= link_to 'Delete candy', delete_path %></button>
- <button><%= link_to 'Log Out', signout_path%></button>
-<% else %>
-
-<%= link_to 'Log Out', signout_path%>
-<%= link_to 'See candies', candies_path %>
-<%= form_tag("/purchases", method: "post") do %>
- <%= hidden_field_tag :user_id, value = current_user.id %><br />
- <%= hidden_field_tag :candy_id, value = @candy.id %><br />
- <%= label_tag :payment_type %><br><%= text_field_tag :payment_type %>
-
-
-
-<div class="actions"><%= submit_tag 'Purchase Candy', :class => 'btn btn-primary' %></div>
-<% end %>
-<% end %>

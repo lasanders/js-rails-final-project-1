@@ -1,5 +1,5 @@
 class CandiesController < ApplicationController
-before_action:set_candy, only: [:show, :edit, :update, :destroy]
+before_action:set_candy, only: [:show, :create, :edit, :update, :destroy]
 def index
 @candies= Candy.all
 @purchases= Purchase.all
