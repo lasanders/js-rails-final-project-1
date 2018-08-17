@@ -1,5 +1,5 @@
 class CandiesController < ApplicationController
-before_action:set_candy, only: [ :create, :edit, :update, :destroy]
+before_action:set_candy, only: [:create, :edit, :update, :destroy]
 
 def index
 @candies= Candy.all
@@ -32,7 +32,7 @@ end
 def show
   @candy= Candy.find(params[:id])
   respond_to do |format|
-    format.html
+    format.html {render :show}
     format.json {render json: @candy}
   end
 end

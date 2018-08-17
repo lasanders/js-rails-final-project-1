@@ -1,4 +1,4 @@
-class UsersSerializer < ActiveModel::Serializer
+class UserSerializer < ActiveModel::Serializer
   attributes :id, :name, :password, :taste, :employee, :cash, :appetite, :provider, :uid, :email
 
   has_many :purchases

@@ -2,14 +2,14 @@
 <p><%= @message %></p>
 <% end %>
 
-<div id="candyResult">
-      <h2 class="candyName">Candy: <%= @candy.name %></h2>
-  <a href="#" class="js-next" data-id="<%=@candy.id%>">Next Candy</a>
-  <p class"candyTaste">Taste: <%= @candy.taste %> candy</p>
-  <p class="candyAppetite">Appetite: <%= @candy.appetite %></p>
-  <p class="candyCost">Cost: $<%= @candy.cost %></p><br>
-  <p class="candyCount">Remaining Count: <%= @candy.count %></p><br>
-</div>
+
+<h2 class="candyName">Candy: <%= @candy.name %></h2>
+<a href="#" class="js-next" data-id="<%=@candy.id%>">Next Candy</a>
+<p class="candyTaste">Taste: <%= @candy.taste %> candy</p>
+<p class="candyAppetite">Appetite: <%= @candy.appetite %></p>
+<p class="candyCost">Cost: $<%= @candy.cost %></p><br>
+<p class="candyCount">Remaining Count: <%= @candy.count %></p><br>
+
 
 <% if current_user.employee %>
 <button><%= link_to 'Edit Candy', edit_candy_path(@candy) %></button>
@@ -30,17 +30,16 @@
 <script type="text/javascript" charset="utf-8">
 $(function () {
   $(".js-next").on("click", function() {
-
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
     $.get("/candies/" + nextId + ".json", function(data) {
-  debugger
-      $(".candyName").text(data["name"]);
-      $(".candyTaste").text(data["taste"]);
-      $(".candyAppetite").text(data["appetite"]);
-      $(".candyCost").text(data["cost"]);
-      $(".candyCount").text(data["count"]);
 
+      $(".candyName").text(data.name);
+      $(".candyTaste").text(data.taste);
+      $(".candyAppetite").text(data.appetite);
+      $(".candyCost").text(data.cost);
+      $(".candyCount").text(data.count);
 
+      $(".js-next").attr("data-id", data["id"]);
     });
   });
 });
