@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
   # resources :purchases
    root 'users#home'
-    
+
 
     get '/users' => 'users#new'
- 
+
     post '/users' => 'users#create'
-   
+
    get '/signin', to: 'sessions#new', as: 'signin'
    get '/auth/google_oauth2/callback' => 'sessions#other_create'
    post '/sessions', to: 'sessions#create'
@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     #  post '/users/:user_id/purchases/create' => 'purchases#create'
      # get '/users/:user_id/purchases/:id' => 'purchases#show', as: 'user_purchase'
      # post '/users/:user_id/purchases/:id' => 'purchases#show'
+
    patch '/purchases', to: 'purchases#show'
    get '/signout', to: 'sessions#destroy'
    delete '/signout', to: 'sessions#destroy'
@@ -25,16 +26,15 @@ Rails.application.routes.draw do
    get '/delete', to: 'candies#destroy'
    post '/delete', to: 'candies#destroy'
   post '/purchases', to: 'purchases#create'
-  
+
    resources :users do
        resources :purchases, only: [:show, :new]
-        
+
      end
-    
-  
+
+
     resources :users
       resources :candies
     resources :purchases
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
-

@@ -3,7 +3,7 @@
 <% end %>
 
 <div id="candyResult">
-  <h2 class="candyName">Candy: <%= @candy.name %></h2>
+      <h2 class="candyName">Candy: <%= @candy.name %></h2>
   <a href="#" class="js-next" data-id="<%=@candy.id%>">Next Candy</a>
   <p class"candyTaste">Taste: <%= @candy.taste %> candy</p>
   <p class="candyAppetite">Appetite: <%= @candy.appetite %></p>
@@ -32,14 +32,15 @@ $(function () {
   $(".js-next").on("click", function() {
 
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-    $.getJSON("/candies/" + nextId, function(data) {
-      $(".candyName").text(data.name);
-      $(".candyTaste").text(data.taste);
-      $(".candyAppetite").text(data.appetite);
-      $(".candyCost").text(data.cost);
-      $(".candyCount").text(data.count);
+    $.get("/candies/" + nextId + ".json", function(data) {
+  debugger
+      $(".candyName").text(data["name"]);
+      $(".candyTaste").text(data["taste"]);
+      $(".candyAppetite").text(data["appetite"]);
+      $(".candyCost").text(data["cost"]);
+      $(".candyCount").text(data["count"]);
 
-      // $(".js-next").attr("data-id", data.id);
+
     });
   });
 });
