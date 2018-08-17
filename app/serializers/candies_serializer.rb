@@ -1,3 +1,6 @@
 class CandiesSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :name, :taste, :cost, :appetite, :count
+
+  has_many :purchases
+  has_many :users, through: :purchases
 end
