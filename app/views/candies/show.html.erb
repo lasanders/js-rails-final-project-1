@@ -29,7 +29,6 @@
 
 <script type="text/javascript" charset="utf-8">
 $(function () {
-  var id = this.id
   $(".js-next").on("click", function() {
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
     $.get("/candies/" + nextId + ".json", function(data) {
@@ -39,7 +38,7 @@ debugger
       $(".candyAppetite").text(data.appetite);
       $(".candyCost").text(data.cost);
       $(".candyCount").text(data.count);
-   $(".js-next").attr("data-id", data["id"]);
+   $(".js-next").attr("data-id", data.id);
 
     });
   });

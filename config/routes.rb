@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # resources :purchases
    root 'users#home'
-     resources :candies
+
 
     get '/users' => 'users#new'
 
@@ -25,13 +25,12 @@ Rails.application.routes.draw do
    post '/delete', to: 'candies#destroy'
   post '/purchases', to: 'purchases#create'
 
-
    resources :users do
        resources :purchases, only: [:show, :new]
 
      end
 
-
+    resources :candies
     resources :users
 
     resources :purchases

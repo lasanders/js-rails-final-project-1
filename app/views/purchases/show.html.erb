@@ -5,7 +5,7 @@
 <%= form_tag("/purchases", method: "post") do %>
 <%= hidden_field_tag :user_id, value = current_user.id %><br>
 <%= hidden_field_tag :candy_id, value = @purchase.candy_id %>
-
+<a href="#" class="js-next" data-id="<%=@purchase.candy.id%>">Next Purchase</a>
 <h3><%= @purchase.candy.name %></h3>
 Cost of candy: <%= @purchase.candy.cost %> dollars<br>
 Candy flavor: <%= @purchase.candy.taste %><br>
@@ -16,5 +16,24 @@ Payment Type: <%= @purchase.payment_type %><br>
 
 <br></br>
 <%= link_to 'Log Out', signout_path%>
-<%= link_to 'See candies', candies_path %> 
-<%= link_to 'User Profile', user_path(@user) %> 
+<%= link_to 'See candies', candies_path %>
+<%= link_to 'User Profile', user_path(@user) %>
+
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-next").on("click", function() {
+    var id = this.id
+    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    $.get("/users/" + id + "/purchases/" + nextId + ".json", function(data) {
+debugger
+      $(".PurchaseCandyName").text(data.candy.name);
+      $(".PurchaseCandyTaste").text(data.candy.taste);
+      $(".PurchaseCandyAppetite").text(data.candy.appetite);
+      $(".PurchaseCandyCost").text(data.candy.cost);
+      $(".PurchaseCandyCount").text(data.candy.count);
+   $(".js-next").attr("data-id", data.candy.id);
+
+    });
+  });
+});
+</script>

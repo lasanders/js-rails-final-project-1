@@ -14,7 +14,7 @@ def show
   @candy= Candy.find(params[:id])
   respond_to do |format|
     format.html
-    format.json {render json: @candy}
+     format.json {render json: @candy}
   end
 end
 
@@ -45,7 +45,10 @@ def update
 @candy= Candy.find(params[:id])
     if current_user.employee  && @candy.update(candy_params)
         # redirect_to @candy
-         render json: @candy
+        respond_to do |format|
+          format.html {render :show}
+          format.json {render json: @candy}
+        end
       else
           candy_error
         render json :edit
