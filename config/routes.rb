@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # resources :purchases
    root 'users#home'
-
+     resources :candies
 
     get '/users' => 'users#new'
 
@@ -11,8 +11,8 @@ Rails.application.routes.draw do
    get '/auth/google_oauth2/callback' => 'sessions#other_create'
    post '/sessions', to: 'sessions#create'
    post '/auth/google_oauth2/callback' => 'sessions#other_create'
-   get '/candies/:id/' => 'candies#show'
-   post '/candies/:id/' => 'candies#show'
+  #  get '/candies/:id/' => 'candies#show'
+  #  post '/candies/:id/' => 'candies#show', as: 'js-next'
     get '/users/:id/candies' => 'users#candies', as: 'user_candies'
     post '/users/:id/candies' => 'users#candies'
 
@@ -25,12 +25,13 @@ Rails.application.routes.draw do
    post '/delete', to: 'candies#destroy'
   post '/purchases', to: 'purchases#create'
 
+
    resources :users do
        resources :purchases, only: [:show, :new]
 
      end
 
-    resources :candies
+
     resources :users
 
     resources :purchases
