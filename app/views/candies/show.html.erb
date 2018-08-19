@@ -2,12 +2,12 @@
 <p><%= @message %></p>
 <% end %>
 
-<div class="result"></div>
+
 <h2 class="candyName">Candy: <%= @candy.name %></h2>
 <a href="#" class="js-next" data-id="<%=@candy.id%>">Next Candy</a>
 <p class="candyTaste">Taste: <%= @candy.taste %> candy</p>
 <p class="candyAppetite">Appetite: <%= @candy.appetite %></p>
-<p class="candyCost">Cost: $<%= @candy.cost %></p><br>
+<p class="candyCost">Cost: $<%= @candy.cost %></p>
 <p class="candyCount">Remaining Count: <%= @candy.count %></p><br>
 
 
@@ -33,6 +33,7 @@ $(function () {
     e.preventDefault()
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
     $.get("/candies/" + nextId + ".json", function(data) {
+      debugger
       $(".candyName").text(data.name);
       $(".candyTaste").text(data.taste);
       $(".candyAppetite").text(data.appetite);

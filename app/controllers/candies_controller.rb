@@ -6,7 +6,7 @@ def index
 @purchases= Purchase.all
 respond_to do |format|
   format.html {render :index}
-  # format.json {render json: @candy}
+  format.json {render json: @candy}
 end
 end
 
