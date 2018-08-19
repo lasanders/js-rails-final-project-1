@@ -11,11 +11,12 @@ end
 end
 
 def show
-  @candy= Candy.find(params[:id])
+  @candy = Candy.find(params[:id])
   respond_to do |format|
-    format.html
-     format.json {render json: @candy}
+    format.html { render :show }
+    format.json { render json: @candy}
   end
+
 end
 
 def new

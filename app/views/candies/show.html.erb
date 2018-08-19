@@ -2,7 +2,7 @@
 <p><%= @message %></p>
 <% end %>
 
-
+<div class="result"></div>
 <h2 class="candyName">Candy: <%= @candy.name %></h2>
 <a href="#" class="js-next" data-id="<%=@candy.id%>">Next Candy</a>
 <p class="candyTaste">Taste: <%= @candy.taste %> candy</p>
@@ -29,16 +29,17 @@
 
 <script type="text/javascript" charset="utf-8">
 $(function () {
-  $(".js-next").on("click", function() {
+  $(".js-next").on("click", function(e) {
+    e.preventDefault()
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
     $.get("/candies/" + nextId + ".json", function(data) {
-debugger
       $(".candyName").text(data.name);
       $(".candyTaste").text(data.taste);
       $(".candyAppetite").text(data.appetite);
       $(".candyCost").text(data.cost);
       $(".candyCount").text(data.count);
-   $(".js-next").attr("data-id", data.id);
+       // re-set the id to current on the link
+     $(".js-next").attr("data-id", data.id);
 
     });
   });
