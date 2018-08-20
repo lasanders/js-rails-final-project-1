@@ -33,7 +33,6 @@ $(function () {
     e.preventDefault()
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
     $.get("/candies/" + nextId + ".json", function(data) {
-      debugger
       $(".candyName").text(data.name);
       $(".candyTaste").text(data.taste);
       $(".candyAppetite").text(data.appetite);
