@@ -23,20 +23,24 @@ Payment Type: <%= @purchase.payment_type %><br>
 $(function () {
   $(".js-next").on("click", function() {
 
-  var user_id = (JSON.stringify(parseInt($(".js-next").attr("data-id")), ['user_id']) );
+  var user_id = (JSON.stringify(parseInt($(".js-next").attr("data-id"))))
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
 
-    $.get("/users/" + user_id + "/purchases/" + nextId + ".json", function(data) {
-      alert( JSON.stringify(data), ['name', 'taste'] );
+    data = $.get("/users/" + user_id + "/purchases/" + nextId + ".json")
+      var findDataInfo = function(data, info) {
+         if (data.info === info) {return data}
+       for (var i in data) {
+
 debugger
-      $(".PurchaseCandyName").text(purchase.candy.name);
-      $(".PurchaseCandyTaste").text(candy.taste);
+      $(".PurchaseCandyName").text(data["candy"]["taste"]);
+      $(".PurchaseCandyTaste").text(data["candy"]["taste"]);
       $(".PurchaseCandyAppetite").text(data["candy"]["appetite"]);
       $(".PurchaseCandyCost").text(data["candy"]["cost"]);
       $(".PurchaseCandyCount").text(data["candy"]["count"]);
    $(".js-next").attr("data-id", data["candy"]["id"]);
-
+}
+}
     });
   });
-});
+
 </script>
