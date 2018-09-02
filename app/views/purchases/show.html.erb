@@ -5,7 +5,7 @@
 <%= form_tag("/purchases", method: "post") do %>
 <%= hidden_field_tag :user_id, value = current_user.id %><br>
 <%= hidden_field_tag :candy_id, value = @purchase.candy_id %>
-<a href="#" class="js-next" data-id="<%=@purchase.id%>">Next Purchase</a>
+<a href="#" class="js-next" data-id="<%=@purchase.id%>", data-user_id="<%=@purchase.user_id%>">Next Purchase</a>
 <h3><%= @purchase.candy.name %></h3>
 Cost of candy: <%= @purchase.candy.cost %> dollars<br>
 Candy flavor: <%= @purchase.candy.taste %><br>
@@ -24,10 +24,11 @@ Payment Type: <%= @purchase.payment_type %><br>
 $(function () {
   $(".js-next").on("click", function(e) {
     e.preventDefault()
-  var user_id = (JSON.stringify(parseInt($(".js-next").attr("data-id")), ['user_id']) );
+var user_id = parseInt($(".js-next").attr("data-user_id"))
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+
     debugger
-    $.get("/users/" + user_id + "/purchases/" + nextId + ".json", function(data) {
+    data = $.get("/users/" + user_id + "/purchases/" + nextId + ".json", function(data) {
       debugger
       alert( JSON.stringify(data), ['name', 'taste'] );
 debugger
