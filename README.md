@@ -1,12 +1,12 @@
 
-This is a Candy Shop Application, created using Ruby version - 2.3.3, and Rails - 5.2.0. I created database using Rails generate new. It manages candies, users, and purchases through the use of forms and RESTful routes. 
+This is a Candy Shop Application. I created the backend using Ruby version - 2.3.3 and Rails - 5.2.0. I created the frontend using JavaScript. It manages candies, users, and purchases through the use of forms and RESTful routes.
 Users can purchase candy if they are hungry enough and if they have enough money. Employees can add, edit or delete candies.
-If Users meet the criteria, they can choose a candy to purchase from the index page. Once they purchase the candy, they're taken to their own user page, where past purchases are displayed, as is user info, and links to purchase new candies, edit users, see candies, idividual purchase information, previous candy purchased, and log out. 
+If Users meet the criteria, they can choose a candy to purchase from the index page. Once they purchase the candy, they're taken to their own user page, where past purchases are displayed, as is user info, and links to purchase new candies, edit users, see candies, individual purchase information, previous candy purchased, and log out.
 
 Installation Guide:
 Fork and clone this repo. Then bundle install and rake:db migrate. Connect to rails server, and sign in through the app or through Google, or create a new account.
 
-This project has been licensed under the MIT open source license. https://opensource.org/licenses/MIT 
+This project has been licensed under the MIT open source license. https://opensource.org/licenses/MIT
 
 MIT License
 
@@ -42,21 +42,3 @@ ahead and use a typical git workflow to make it happen:
 
 An owner will review your change and approve or comment on it in due
 course.
-
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-Application Description
