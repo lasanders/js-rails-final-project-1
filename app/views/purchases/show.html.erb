@@ -23,7 +23,7 @@ Payment Type: <%= @purchase.payment_type %><br>
 $(function () {
   $(".js-next").on("click", function() {
 
-  var user_id = (JSON.stringify(parseInt($(".js-next").attr("data-id"))))
+  var user_id = parseInt($(".js-next").attr("data-id"))))
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
 
     data = $.get("/users/" + user_id + "/purchases/" + nextId + ".json")
