@@ -3,7 +3,7 @@ class PurchasesController < ApplicationController
 
   def show
     @user = User.find(params[:user_id])
-    @purchase = @user.purchases.find(params[:id])
+    @purchase = Purchase.find(params[:id])
     respond_to do |format|
       format.html { render :show }
       format.json {render json: @purchases}

@@ -22,23 +22,22 @@ Payment Type: <%= @purchase.payment_type %><br>
 
 <script type="text/javascript" charset="utf-8">
 $(function () {
-  $(".js-next").on("click", function(e) {
-    e.preventDefault()
-var user_id = parseInt($(".js-next").attr("data-user_id"))
+  $(".js-next").on("click", function() {
+  var user_id = parseInt($(".js-next").attr("data-user_id"))
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-
     debugger
-    data = $.get("/users/" + user_id + "/purchases/" + nextId + ".json", function(data) {
-      debugger
-      alert( JSON.stringify(data), ['name', 'taste'] );
+    $.get("/users/" + user_id + "/purchases/" + nextId + ".json"), function(data) {
+      for(let i = 0, l = data.items.length; i < l; i++) {
+        var prop = data.items[i]
 debugger
-      $(".PurchaseCandyName").text(data.candy.name);
-      $(".PurchaseCandyTaste").text(data["candy"]["taste"]);
-      $(".PurchaseCandyAppetite").text(data["candy"]["appetite"]);
-      $(".PurchaseCandyCost").text(data["candy"]["cost"]);
-      $(".PurchaseCandyCount").text(data["candy"]["count"]);
-   $(".js-next").attr("data-id", data["candy"]["id"]);
+      $(".PurchaseCandyName").text(prop.candy.name);
+      $(".PurchaseCandyTaste").text(prop.candy.taste);
+      $(".PurchaseCandyAppetite").text(prop.candy.appetite);
+      $(".PurchaseCandyCost").text(prop.candy.cost);
+      $(".PurchaseCandyCount").text(prop.candy.count);
+   $(".js-next").attr("data-id", prop.candy.id);
+}
+}
     });
   });
-});
 </script>
