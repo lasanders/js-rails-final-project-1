@@ -6,7 +6,7 @@ class PurchasesController < ApplicationController
     @purchase = @user.purchases.find(params[:id])
     respond_to do |format|
       format.html { render :show }
-      # format.json {render json: @purchases}
+      format.json {render json: @purchases}
     end
   end
 

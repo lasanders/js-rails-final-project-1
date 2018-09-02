@@ -5,7 +5,7 @@
 <%= form_tag("/purchases", method: "post") do %>
 <%= hidden_field_tag :user_id, value = current_user.id %><br>
 <%= hidden_field_tag :candy_id, value = @purchase.candy_id %>
-<a href="#" class="js-next" data-id="<%=@purchase.candy.id%>">Next Purchase</a>
+<a href="#" class="js-next" data-id="<%=@purchase.id%>">Next Purchase</a>
 <h3><%= @purchase.candy.name %></h3>
 Cost of candy: <%= @purchase.candy.cost %> dollars<br>
 Candy flavor: <%= @purchase.candy.taste %><br>
@@ -19,28 +19,25 @@ Payment Type: <%= @purchase.payment_type %><br>
 <%= link_to 'See candies', candies_path %>
 <%= link_to 'User Profile', user_path(@user) %>
 
+
 <script type="text/javascript" charset="utf-8">
 $(function () {
-  $(".js-next").on("click", function() {
-
-  var user_id = parseInt($(".js-next").attr("data-id"))))
+  $(".js-next").on("click", function(e) {
+    e.preventDefault()
+  var user_id = (JSON.stringify(parseInt($(".js-next").attr("data-id")), ['user_id']) );
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-
-    data = $.get("/users/" + user_id + "/purchases/" + nextId + ".json")
-      var findDataInfo = function(data, info) {
-         if (data.info === info) {return data}
-       for (var i in data) {
-
+    debugger
+    $.get("/users/" + user_id + "/purchases/" + nextId + ".json", function(data) {
+      debugger
+      alert( JSON.stringify(data), ['name', 'taste'] );
 debugger
-      $(".PurchaseCandyName").text(data["candy"]["taste"]);
+      $(".PurchaseCandyName").text(data.candy.name);
       $(".PurchaseCandyTaste").text(data["candy"]["taste"]);
       $(".PurchaseCandyAppetite").text(data["candy"]["appetite"]);
       $(".PurchaseCandyCost").text(data["candy"]["cost"]);
       $(".PurchaseCandyCount").text(data["candy"]["count"]);
    $(".js-next").attr("data-id", data["candy"]["id"]);
-}
-}
     });
   });
-
+});
 </script>
