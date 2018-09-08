@@ -2,11 +2,11 @@ class PurchasesController < ApplicationController
   before_action :current_user
 
   def show
-    @user = User.find(params[:user_id])
-    @purchase = Purchase.find(params[:id])
+      @purchase = Purchase.find(params[:id])
+    @user = Purchase.find(params[:user_id])
     respond_to do |format|
       format.html { render :show }
-      format.json {render json: @purchases}
+      format.json {render json: @purchase}
     end
   end
 
