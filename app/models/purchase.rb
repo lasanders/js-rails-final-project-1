@@ -2,7 +2,7 @@ class Purchase < ApplicationRecord
     belongs_to:user
     belongs_to:candy
 
-    
+
     def user_attributes
     self.try(:user).try(:attributes)
   end
@@ -11,7 +11,7 @@ class Purchase < ApplicationRecord
     user = User.find_or_create_by(name: name)
     self.user = user
   end
-  
+
   def candy_name
     self.try(:candy).try(:attributes)
   end
@@ -20,23 +20,23 @@ class Purchase < ApplicationRecord
     candy = Candy.find_or_create_by(name: name)
     self.candy = candy
   end
-    
+
 
     def cash_issue
     self.candy.cost >= self.user.cash
         #  binding.pry
     end
- 
+
     def cash_problem
         "Sorry. You do not have enough money to buy #{self.candy.name}."
     end
-      
+
     def hunger_issue
-    self.user.appetite >= 75 
-    
+    self.user.appetite >= 75
+
     end
     def hunger_problem
-         "Sorry. You are not hungry enough to eat this #{self.candy.name}." 
+         "Sorry. You are not hungry enough to eat this #{self.candy.name}."
     end
     def multiple_issues
     self.candy.appetite <= 75 && self.candy.cost >= self.user.cash
@@ -48,11 +48,11 @@ class Purchase < ApplicationRecord
     def get_cavities
     self.user.appetite <= 75 && self.candy.cost <= self.user.cash
     end
-    
+
     def thank_you
         "Thanks for purchasing #{self.candy.name}!"
     end
-    
+
     def hunger
     hunger_status= user.appetite
     if hunger_status >= 0 && hunger_status <= 25
@@ -61,12 +61,12 @@ class Purchase < ApplicationRecord
         "You need more candy to function!"
     elsif hunger_status > 50 && hunger_status <= 75
         "Maybe just a few more pieces!"
-    elsif hunger_status > 75 
+    elsif hunger_status > 75
         "You are way too full for candy right now!"
     end
     end
-            
-        
+
+
     def update_qualities
     new_appetite= self.user.appetite + self.candy.appetite
     new_taste= self.candy.taste
@@ -82,22 +82,21 @@ class Purchase < ApplicationRecord
         )
       self.update(:payment_type => payment_type)
     end
-    
+
 
     def purchase_candy
-     
+
     if get_cavities
         update_qualities
-        thank_you 
+        thank_you
     elsif cash_issue && hunger_issue
-         multiple_problems 
-    elsif cash_issue 
-      cash_problem 
+         multiple_problems
+    elsif cash_issue
+      cash_problem
     elsif hunger_issue
-      hunger_problem 
- 
-    end
-    end
-    
-end
+      hunger_problem
 
+    end
+    end
+
+end

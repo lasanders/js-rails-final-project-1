@@ -1,12 +1,14 @@
 class PurchasesController < ApplicationController
   before_action :current_user
 
+
   def show
-      @purchase = Purchase.find(params[:id])
-    @user = Purchase.find(params[:user_id])
+    @purchase = Purchase.find(params[:id])
+    @user = current_user
+
     respond_to do |format|
       format.html { render :show }
-      format.json {render json: @purchase}
+      format.json { render json: @purchase }
     end
   end
 
@@ -39,6 +41,10 @@ class PurchasesController < ApplicationController
   end
 
   private
+
+  def set_purchase
+    @purchase= Purchase.find(params[:id])
+  end
 
   def purchase_params
     params.require(:purchase).permit(:user_id, :candy_id, :payment_type)
