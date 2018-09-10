@@ -30,11 +30,11 @@
         debugger
 
         $(".PurchaseCandyName").text(purchase.candy.name);
+        $(".PurchaseCandyCost").text(purchase.candy.cost);
         $(".PurchaseCandyTaste").text(purchase.candy.taste);
         $(".PurchaseCandyAppetite").text(purchase.candy.appetite);
-        $(".PurchaseCandyCost").text(purchase.candy.cost);
-        $(".PurchaseCandyCount").text(purchase.candy.count);
-        $(".js-next").attr("data-id", nextId);
+        $(".PurchaseCandyCount").text(purchase.payment_type);
+        $(".js-next").attr("data-id", purchase.id);
 
       });
     });
