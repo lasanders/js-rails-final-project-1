@@ -28,9 +28,9 @@
       var nextId = parseInt($(".js-next").attr("data-id")) + 1;
       $.get("/users/" + user_id + "/purchases/" + nextId + ".json", function(purchase) {
         debugger
-           $(".js-next").attr("data-id", data.id);
-        var html = `
           
+        var html = `
+          <a href="#" $(".js-next").attr("data-id", purchase.id);</a>
         <h2 class="purchaseCandyName">${purchase.candy.name}</h2>
         <p class="purchaseCandyCost">Cost of candy: ${purchase.candy.cost } dollars</p>
         <p class="purchaseCandyFlavor">Candy flavor: ${purchase.candy.taste }</p>
