@@ -1,18 +1,18 @@
 <H2>Purchase Reciept:</H2>
 
 
-
+<div class="candy">
 <%= form_tag("/purchases", method: "post") do %>
-  <%= hidden_field_tag :user_id, value = current_user.id %><br>
+  <%= hidden_field_tag :user_id, value = current_user.id %>
   <%= hidden_field_tag :candy_id, value = @purchase.candy_id %>
   <a href="#" class="js-next"  user-id="<%=@purchase.user_id%>" data-id="<%=@purchase.id%>"> Next Purchase</a>
-  <h3><%= @purchase.candy.name %></h3>
-  Cost of candy: <%= @purchase.candy.cost %> dollars<br>
-  Candy flavor: <%= @purchase.candy.taste %><br>
-  Candy appetite rating: <%= @purchase.candy.appetite %><br>
-  Payment Type: <%= @purchase.payment_type %><br>
+  <h2 class="purchaseCandyName"><%= @purchase.candy.name %></h2>
+  <p class="purchaseCandyCost">Cost of candy: <%= @purchase.candy.cost %> dollars</p>
+  <p class="purchaseCandyFlavor">Candy flavor: <%= @purchase.candy.taste %></p>
+  <p class="PurchaseCandyAppetite">Candy appetite rating: <%= @purchase.candy.appetite %></p>
+  <p class="purchasePaymentType">Payment Type: <%= @purchase.payment_type %></p>
   <% end %>
-
+</div>
 
   <br></br>
   <%= link_to 'Log Out', signout_path%>
@@ -28,13 +28,17 @@
       var nextId = parseInt($(".js-next").attr("data-id")) + 1;
       $.get("/users/" + user_id + "/purchases/" + nextId + ".json", function(purchase) {
         debugger
-
-        $(".PurchaseCandyName").text(purchase.candy.name);
-        $(".PurchaseCandyCost").text(purchase.candy.cost);
-        $(".PurchaseCandyTaste").text(purchase.candy.taste);
-        $(".PurchaseCandyAppetite").text(purchase.candy.appetite);
-        $(".PurchaseCandyCount").text(purchase.payment_type);
-        $(".js-next").attr("data-id", purchase.id);
+           $(".js-next").attr("data-id", data.id);
+        var html = `
+          
+        <h2 class="purchaseCandyName">${purchase.candy.name}</h2>
+        <p class="purchaseCandyCost">Cost of candy: ${purchase.candy.cost } dollars</p>
+        <p class="purchaseCandyFlavor">Candy flavor: ${purchase.candy.taste }</p>
+        <p class="PurchaseCandyAppetite">Candy appetite rating: ${purchase.candy.appetite }</p>
+        <p class="purchasePaymentType">Payment Type: ${purchase.payment_type}</p>
+        `
+      
+          $(".candy").text(html);
 
       });
     });
