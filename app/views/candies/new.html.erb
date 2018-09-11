@@ -6,23 +6,25 @@
 <p class="candyAppetite">Appetite: <%= @candy.appetite %></p>
 <p class="candyCount">Remaining Count: <%= @candy.count %></p><br>
 
+
+
     <script type="text/javascript" charset="utf-8">
 $(function () {
-  $('form').submit( function(event) {
-event.PreventDefault();
-    var values = $(this).serialize();
-    var posting = $.post('/candies', values);
-    debugger
-    posting.done(function(data) {
-      var candy = data
-      $(".candyName").text(candy.name);
-      $(".candyTaste").text(candy.taste);
-      $(".candyAppetite").text(candy.appetite);
-      $(".candyCount").text(candy.count);
+  $('form').on("submit", function(e) {
+        e.preventDefault();
+debugger
+var newCandy = $("#new_candy").serialize();
+$.post("/candies", newCandy, function(data) {
+
+      debugger
+      $(".candyName").append(data.name));
+      $(".candyTaste").append(data.taste);
+      $(".candyAppetite").append(data.appetite);
+      $(".candyCount").append(data.count);
 
     });
+    });
   });
-});
 </script>
 
  <%= link_to 'See candies', candies_path %>

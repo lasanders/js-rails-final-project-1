@@ -2,14 +2,14 @@
 <p><%= @message %></p>
 <% end %>
 
-
+<div class="candy">
 <h2 class="candyName">Candy: <%= @candy.name %></h2>
 <a href="#" class="js-next" data-id="<%=@candy.id%>">Next Candy</a>
 <p class="candyTaste">Taste: <%= @candy.taste %> candy</p>
 <p class="candyAppetite">Appetite: <%= @candy.appetite %></p>
 <p class="candyCost">Cost: $<%= @candy.cost %></p>
 <p class="candyCount">Remaining Count: <%= @candy.count %></p><br>
-
+</div>
 
 <% if current_user.employee %>
 <button><%= link_to 'Edit Candy', edit_candy_path(@candy) %></button>
@@ -33,13 +33,16 @@ $(function () {
     e.preventDefault()
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
     $.get("/candies/" + nextId + ".json", function(data) {
+      var html = `
+      <h2 class="candyName">Candy: ${data.name}</h2>
+      <p class="candyTaste">Taste: ${data.taste} candy </p>
+      <p class="candyAppetite">Appetite: ${data.appetite} </p>
+      <p class="candyCost">Cost: ${data.cost} </p>
+      <p class="candyCount">Remaining Count: ${data.count} </p><br>
+      `
       debugger
-      $(".candyName").text(data.name);
-      $(".candyTaste").text(data.taste);
-      $(".candyAppetite").text(data.appetite);
-      $(".candyCost").text(data.cost);
-      $(".candyCount").text(data.count);
-       // re-set the id to current on the link
+      $(".candy").text(html);
+
      $(".js-next").attr("data-id", data.id);
 
     });
