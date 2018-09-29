@@ -8,7 +8,7 @@ before_action :set_user, only: [:edit, :update, :destroy]
     end
 
 def candies
-
+  @user = User.find(params[:id])
 end
     def new
         @user = User.new
