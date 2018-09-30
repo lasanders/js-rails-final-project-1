@@ -1,33 +1,35 @@
 <%= render 'form' %>
 
+<div id="candyResult">
+<h2 id="candyName"></h2>
+<p id="candyTaste"></p>
+<p id="candyAppetite"></p>
+<p id="candyCost"></p>
+<p id="candyCount"></p><br>
+</div>
 
-<h2 class="candyName">Candy: <%= @candy.name %></h2>
-<p class"candyTaste">Taste: <%= @candy.taste %> candy</p>
-<p class="candyAppetite">Appetite: <%= @candy.appetite %></p>
-<p class="candyCost">Cost: <%= @candy.cost %></p>
-<p class="candyCount">Remaining Count: <%= @candy.count %></p><br>
 
-
-
-    <script type="text/javascript" charset="utf-8">
+<script type="text/javascript" charset="utf-8">
 $(function () {
-  $('form').on("submit", function(e) {
-        e.preventDefault();
-debugger
-var newCandy = $(this).serialize();
-var posting = $.post('/candies', newCandy);
-posting.done function(data) {
-
+  $('form').submit(function(event) {
+    event.preventDefault();
+    debugger
+    var values = $(this).serialize();
+    debugger
+    var posting = $.post('/candies', values);
+    posting.done(function(data) {
+var candy = data
       debugger
-      $(".candyName").append(data.name));
-      $(".candyTaste").append(data.taste);
-      $(".candyAppetite").append(data.appetite);
-      $(".candyCount").append(data.count);
+      $("#candyName").text(candy["name"]);
+      $("#candyTaste").text(candy.taste);
+      $("#candyAppetite").text(candy.appetite);
+      $("#candyCost").text(candy.cost);
+      $("#candyCount").text(candy.count);
 
-    });
     });
   });
+});
 </script>
 
- <%= link_to 'See candies', candies_path %>
- <%= link_to 'Log Out', signout_path%>
+<%= link_to 'See candies', candies_path %>
+<%= link_to 'Log Out', signout_path%>
