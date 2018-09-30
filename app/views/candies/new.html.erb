@@ -17,8 +17,9 @@ $(function () {
     var values = $(this).serialize();
     debugger
     var posting = $.post('/candies', values);
+    debugger
     posting.done(function(data) {
-var candy = data
+      var candy = data;
       debugger
       $("#candyName").text(candy["name"]);
       $("#candyTaste").text(candy.taste);
