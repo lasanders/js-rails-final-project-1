@@ -4,6 +4,7 @@
 <h2 class="candyName">Candy: <%= @candy.name %></h2>
 <p class"candyTaste">Taste: <%= @candy.taste %> candy</p>
 <p class="candyAppetite">Appetite: <%= @candy.appetite %></p>
+<p class="candyCost">Cost: <%= @candy.cost %></p>
 <p class="candyCount">Remaining Count: <%= @candy.count %></p><br>
 
 
@@ -13,8 +14,9 @@ $(function () {
   $('form').on("submit", function(e) {
         e.preventDefault();
 debugger
-var newCandy = $("#new_candy").serialize();
-$.post("/candies", newCandy, function(data) {
+var newCandy = $(this).serialize();
+var posting = $.post('/candies', newCandy);
+posting.done function(data) {
 
       debugger
       $(".candyName").append(data.name));
