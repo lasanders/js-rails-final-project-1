@@ -23,14 +23,10 @@ class Candy {
 $(function () {
   $('form').submit(function(event) {
     event.preventDefault();
-    debugger
     var values = $(this).serialize();
-    debugger
     var posting = $.post('/candies', values);
-    debugger
     posting.done(function(data) {
       var candy = data;
-      debugger
       $("#candyName").text(candy["name"]);
       $("#candyTaste").text(candy.taste);
       $("#candyAppetite").text(candy.appetite);

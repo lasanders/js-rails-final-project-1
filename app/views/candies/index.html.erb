@@ -17,13 +17,45 @@
           <li><%= link_to "Purchase #{candy.name}", candy_path(candy) %> <%= candy.count %> <%= " #{candy.name} available for purchase" %></li><br>
         <% end %>
     <% end %>
-   <br></br> 
+   <br></br>
+
+
+
+   <script type="text/javascript" charset="utf-8">
+   class Candy {
+     constructor({name, taste, appetite, cost, count}) {
+       this.name = name
+       this.taste = taste
+       this.appetite = appetite
+       this.cost = cost
+       this.count = count
+     }
+     formatHTML(){}
+     }
+   $(function () {
+     $('form').submit(function(event) {
+       event.preventDefault();
+       var values = $(this).serialize();
+       $(function () {
+
+           $.get("/candies/" + ".json", function(data) {
+             for(each i in data)
+             debugger
+           $(".candyName").text(data.name);
+           $(".candyTaste").text(data.taste);
+           $(".candyAppetite").text(data.appetite);
+           $(".candyCost").text(data.cost);
+             $(".candyCount").text(data.count);
+
+            $(".js-next").attr("data-id", data.id);
+
+           });
+         });
+       });
+   </script>
 
 <% if current_user.employee %>
 
-  <%= link_to 'New Candy', new_candy_path %> 
+  <%= link_to 'New Candy', new_candy_path %>
     <% end %>
   <%= link_to 'Log Out', signout_path%>
- 
-
-
