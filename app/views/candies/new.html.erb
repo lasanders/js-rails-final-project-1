@@ -10,6 +10,16 @@
 
 
 <script type="text/javascript" charset="utf-8">
+class Candy {
+  constructor({name, taste, appetite, cost, count}) {
+    this.name = name
+    this.taste = taste
+    this.appetite = appetite
+    this.cost = cost
+    this.count = count
+  }
+  formatHTML(){}
+  }
 $(function () {
   $('form').submit(function(event) {
     event.preventDefault();
