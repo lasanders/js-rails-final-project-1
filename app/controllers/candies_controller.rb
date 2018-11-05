@@ -26,11 +26,8 @@ class CandiesController < ApplicationController
   def create
     @candy= Candy.new(candy_params)
     if current_user.employee && @candy.save
-      respond_to do |format|
-        format.html {render :show}
-        format.json {render json: @candy}
-      end
-      #  render json: @candy
+     
+       render json: @candy
     else
       candy_error
       render json: new

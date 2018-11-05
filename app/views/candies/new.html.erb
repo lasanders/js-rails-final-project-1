@@ -1,27 +1,45 @@
-<%= render 'form' %>
+<%= form_for @candy do |f| %>
+
+  <% if @candy.errors.any? %>
+      <p><%= @error %></p>
+  <% end %>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :taste %><br>
+    <%= f.text_field :taste %>
+  </div>
+  <div class="field">
+    <%= f.label :cost %><br>
+    <%= f.text_field :cost %>
+  </div>
+  <div class="field">
+    <%= f.label :appetite %><br>
+    <%= f.text_field :appetite %>
+  </div>
+  <div class="field">
+    <%= f.label :count %><br>
+    <%= f.text_field :count %><br>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  <% end %> 
 
 <div id="candyResult">
-<h2 id="candyName"></h2>
-<p id="candyTaste"></p>
-<p id="candyAppetite"></p>
-<p id="candyCost"></p>
-<p id="candyCount"></p><br>
+  <h2 id="candyName"></h2>
+  <p id="candyTaste"></p>
+  <p id="candyAppetite"></p>
+  <p id="candyCost"></p>
+  <p id="candyCount"></p><br> 
 </div>
 
-
 <script type="text/javascript" charset="utf-8">
-class Candy {
-  constructor({name, taste, appetite, cost, count}) {
-    this.name = name
-    this.taste = taste
-    this.appetite = appetite
-    this.cost = cost
-    this.count = count
-  }
-  formatHTML(){}
-  }
 $(function () {
   $('form').submit(function(event) {
+    //prevent form from submitting the default way
     event.preventDefault();
     var values = $(this).serialize();
     var posting = $.post('/candies', values);
@@ -33,10 +51,9 @@ $(function () {
       $("#candyCost").text(candy.cost);
       $("#candyCount").text(candy.count);
 
-    });
+    });  
   });
-});
+})
 </script>
-
 <%= link_to 'See candies', candies_path %>
 <%= link_to 'Log Out', signout_path%>
