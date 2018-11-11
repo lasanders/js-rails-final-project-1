@@ -12,20 +12,12 @@
  
  
  <script type="text/javascript" charset="utf-8">
-   class Candy {
-     constructor({name, taste, appetite, cost, count}) {
-       this.name = name
-       this.taste = taste
-       this.appetite = appetite
-       this.cost = cost
-       this.count = count
-     }
-     formatHTML(){}
-     }
+
+    
        $(function () {
 
-           $.get("/purchases/" + ".json", function(purchase) {
-            for (var i = 0; i < purchases.length; i++) {
+           $.getJSON("/purchases/", function(purchase) {
+            for (var i = 0; i < purchase; i++) {
              debugger
            $(".purchaseCandyName").text(purchase.candy.name);
            $(".PurchaseCandyTaste").text(purchase.candy.taste);
@@ -33,8 +25,8 @@
            $(".purchaseCandyCost").text(purchase.candy.cost);
              $(".purchaseCandyCount").text(purchase.candy.count);
             }
-           });
+           
          });
        });
-   });
+   
    </script>

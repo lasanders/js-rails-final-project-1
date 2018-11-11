@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   #  post '/candies/:id/' => 'candies#show', as: 'js-next'
     get '/users/:id/candies' => 'users#candies', as: 'user_candies'
     post '/users/:id/candies' => 'users#candies'
-  post '/purchases', to: 'purchases#index'
+  get '/purchases', to: 'purchases#index'
    patch '/purchases', to: 'purchases#show'
    get '/signout', to: 'sessions#destroy'
    delete '/signout', to: 'sessions#destroy'
