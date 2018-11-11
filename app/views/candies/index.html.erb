@@ -39,7 +39,7 @@
        $(function () {
 
            $.get("/candies/" + ".json", function(data) {
-             for(each i in data)
+            for (var i = 0; i < candies.length; i++) {
              debugger
            $(".candyName").text(data.name);
            $(".candyTaste").text(data.taste);
@@ -48,10 +48,11 @@
              $(".candyCount").text(data.count);
 
             $(".js-next").attr("data-id", data.id);
-
+            }
            });
          });
        });
+   });
    </script>
 
 <% if current_user.employee %>

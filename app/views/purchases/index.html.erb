@@ -1,0 +1,40 @@
+ 
+ <div class="purchase">
+<% @purchases.each do |purchase| %>
+
+<li><%= link_to "Purchase ID: #{purchase.candy.name}", purchase_path(purchase) %></li>
+
+  
+
+<% end %>
+</div>
+ 
+ 
+ 
+ <script type="text/javascript" charset="utf-8">
+   class Candy {
+     constructor({name, taste, appetite, cost, count}) {
+       this.name = name
+       this.taste = taste
+       this.appetite = appetite
+       this.cost = cost
+       this.count = count
+     }
+     formatHTML(){}
+     }
+       $(function () {
+
+           $.get("/purchases/" + ".json", function(purchase) {
+            for (var i = 0; i < purchases.length; i++) {
+             debugger
+           $(".purchaseCandyName").text(purchase.candy.name);
+           $(".PurchaseCandyTaste").text(purchase.candy.taste);
+           $(".purchaseCandyAppetite").text(purchase.candy.appetite);
+           $(".purchaseCandyCost").text(purchase.candy.cost);
+             $(".purchaseCandyCount").text(purchase.candy.count);
+            }
+           });
+         });
+       });
+   });
+   </script>

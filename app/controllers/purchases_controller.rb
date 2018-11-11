@@ -1,6 +1,14 @@
 class PurchasesController < ApplicationController
   before_action :current_user
 
+  def index
+    @candies= Candy.all
+    @purchases= Purchase.all
+    respond_to do |format|
+      format.html {render :index}
+      format.json {render json: @purchase}
+    end
+  end
 
   def show
     @purchase = Purchase.find(params[:id])

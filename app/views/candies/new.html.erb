@@ -45,12 +45,11 @@ $(function () {
     var posting = $.post('/candies', values);
     posting.done(function(data) {
       var candy = data;
-      $("#candyName").text(candy["name"]);
+      $("#candyName").text(candy.name);
       $("#candyTaste").text(candy.taste);
       $("#candyAppetite").text(candy.appetite);
       $("#candyCost").text(candy.cost);
       $("#candyCount").text(candy.count);
-
     });  
   });
 })
