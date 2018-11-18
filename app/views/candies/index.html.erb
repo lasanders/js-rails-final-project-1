@@ -38,7 +38,7 @@
        var values = $(this).serialize();
        $(function () {
 
-           $.get("/candies/" + ".json", function(data) {
+           $.getJSON("/candies/", function(data) {
             for (var i = 0; i < candies.length; i++) {
              debugger
            $(".candyName").text(data.name);
