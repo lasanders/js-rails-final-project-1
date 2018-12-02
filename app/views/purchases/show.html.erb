@@ -28,14 +28,14 @@
       var nextId = parseInt($(".js-next").attr("data-id")) + 1;
       $.get("/users/" + user_id + "/purchases/" + nextId + ".json", function(purchase) {
         debugger
-     
+       
         $(".purchaseCandyName").text(purchase.candy.name)
         $(".purchaseCandyTaste").text(purchase.candy.taste) 
         $(".purchaseCandyAppetite").text(purchase.candy.appetite)
         $(".purchaseCandyCost").text(purchase.candy.cost)
         $(".purchasePaymentType").text(purchase.payment_type)
         $(".js-next").attr("data-id", purchase.id);
-        
+       
 
       });
     });

@@ -1,8 +1,9 @@
  
  <div class="purchase">
-<% @purchases.each do |purchase| %>
+  <% @purchases.each do |purchase| %>
 
 <li><%= link_to "Purchase ID: #{purchase.id}" , purchase_path(purchase) %></li>
+
 <p class="purchaseCandyName">Candy: <%=purchase.candy.name%> </p>
 <p class="purchaseCandyTaste">Candy flavor: <%= purchase.candy.taste %></p>
 <p class="purchaseCandyAppetite">Candy appetite rating: <%= purchase.candy.appetite %></p>
@@ -17,16 +18,17 @@
     
        $(function () {
 
-           $.getJSON("/purchases/" + data_id +, function(purchase) {
-              for(var i=0; i < purchases.length; i++) {
+           $.getJSON("/purchases/", function(purchase) {
+            
+             	
              debugger
-
+            
            $(".purchaseCandyName").text(purchase.candy.name);
-           $(".purchaseCandyTaste").text(purchase.candy.taste) 
+           $(".purchaseCandyTaste").text(candy.taste) 
            $(".purchaseCandyAppetite").text(purchase.candy.appetite)
            $(".purchaseCandyCost").text(purchase.candy.cost)
            $(".purchasePaymentType").text(purchase.payment_type)
-            }
+            
            
          });
        });
