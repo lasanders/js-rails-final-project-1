@@ -14,12 +14,12 @@
 </div>
 
  <script type="text/javascript" charset="utf-8">
-
+var i = 0
     
        $(function () {
 
-           $.getJSON("/purchases/", function(purchase) {
-            
+           $.getJSON("/purchases/", function(purchases) {
+            for(i=0, i<purchases, i++) {
              	
              debugger
             
@@ -28,7 +28,7 @@
            $(".purchaseCandyAppetite").text(purchase.candy.appetite)
            $(".purchaseCandyCost").text(purchase.candy.cost)
            $(".purchasePaymentType").text(purchase.payment_type)
-            
+  }
            
          });
        });

@@ -21,39 +21,37 @@
 
 
 
-   <script type="text/javascript" charset="utf-8">
-   class Candy {
-     constructor({name, taste, appetite, cost, count}) {
-       this.name = name
-       this.taste = taste
-       this.appetite = appetite
-       this.cost = cost
-       this.count = count
-     }
-     formatHTML(){}
-     }
+<script type="text/javascript" charset="utf-8">
+class Candy {
+  constructor({name, taste, appetite, cost, count}) {
+    this.name = name
+    this.taste = taste
+    this.appetite = appetite
+    this.cost = cost
+    this.count = count
+  }
+  formatHTML(){}
+}
   
-       $(function () {
-          var values = $(this).serialize();
-    var posting = $.get('/candies', values);
-    posting.done(function(data) {
-      var candy = data;
-             debugger
-            for (var i = 0; i < data.length; i++) {
-             debugger
-           $(".candyName").text(data.name);
-           $(".candyTaste").text(data.taste);
-           $(".candyAppetite").text(data.appetite);
-           $(".candyCost").text(data.cost);
-             $(".candyCount").text(data.count);
+function postCandies() {
+  var values = $(this).serialize();
+  var posting = $.get('/candies', values);
+  posting.done(function(data) {
+    var candy = data;
+    debugger
+    for (var i = 0; i < data.length; i++) {
+      debugger
+      $(".candyName").text(data.name);
+      $(".candyTaste").text(data.taste);
+      $(".candyAppetite").text(data.appetite);
+      $(".candyCost").text(data.cost);
+      $(".candyCount").text(data.count);
+    }
+  });
+};
 
-   
-            }
-           });
-         });
-    
-
-   </script>
+postCandies();
+</script>
 
 <% if current_user.employee %>
 
