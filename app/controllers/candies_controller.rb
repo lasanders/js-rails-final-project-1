@@ -5,8 +5,8 @@ class CandiesController < ApplicationController
     @candies= Candy.all
     @purchases= Purchase.all
     respond_to do |format|
+      format.json {render json: @candies}
       format.html {render :index}
-      format.json {render json: @candy}
     end
   end
 

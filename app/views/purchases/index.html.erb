@@ -14,12 +14,22 @@
 </div>
 
  <script type="text/javascript" charset="utf-8">
-var i = 0
+ class Purchase {
+  constructor({user_id, candy_id, payment_type}) {
+    this.user_id= user_id
+    this.candy_id= candy_id
+    this.payment_type = payment_type
+  }
+  formatHTML(){}
+}
     
        $(function () {
 
-           $.getJSON("/purchases/", function(purchases) {
-            for(i=0, i<purchases, i++) {
+           $.getJSON("/purchases/");
+           debugger
+           
+           (function(purchases) {
+            for(var i=0; i < purchases.length; i++) {
              	
              debugger
             
@@ -28,9 +38,9 @@ var i = 0
            $(".purchaseCandyAppetite").text(purchase.candy.appetite)
            $(".purchaseCandyCost").text(purchase.candy.cost)
            $(".purchasePaymentType").text(purchase.payment_type)
-  }
+            
            
-         });
+         };
        });
-   
+  })
    </script>
