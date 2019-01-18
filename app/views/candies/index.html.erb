@@ -1,7 +1,13 @@
-   <h1>Candies</h1>
-    <h2>Sour Candies</h2>
-
-   
+<div>
+    <h1>Candies</h1>
+    <div id="sourCandies">
+      <h2>Sour Candies</h2>
+    </div>
+  
+    <div id="sweetCandies">
+      <h2>Sweet Candies</h2>
+    </div>
+</div>
 
 
     <h2>Sweet Candies</h2>
@@ -30,18 +36,19 @@ class Candy {
   
 function postCandies() {
 
-  debugger
-    $.get("/candies/", function(data) {
-    var candy = data;
-    debugger
-    for (var i = 0; i < data.length; i++) {
+    $.get("/candies/", function(candies) {
+    
+
+    candies.forEach(candy => {
+    
+      $("#" + candy.taste + "Candies").append("<a href='/candies/" + candy.id + "'>" + candy.name + "</a>");
+      $("#" + candy.taste + "Candies").append("<p>" + candy.taste + "</p>");
+      $("#" + candy.taste + "Candies").append("<p>" + candy.appetite + "</p>");
+      $("#" + candy.taste + "Candies").append("<p>" + candy.cost + "</p>");
+      $("#" + candy.taste + "Candies").append("<p>" + candy.count + "</p>");
       debugger
-      $(".candyName").text(data.name);
-      $(".candyTaste").text(data.taste);
-      $(".candyAppetite").text(data.appetite);
-      $(".candyCost").text(data.cost);
-      $(".candyCount").text(data.count);
-    }
+
+    })
   });
 };
 
