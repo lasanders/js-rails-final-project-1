@@ -17,7 +17,7 @@
 <button><%= link_to 'Delete candy', delete_path %></button>
 <button><%= link_to 'Log Out', signout_path%></button>
 <% else %>
-<%= link_to 'Log Out', signout_path%>
+<%= link_to 'Log Out', signout_path %>
 <%= link_to 'See candies', candies_path %>
 <%= form_tag("/purchases", method: "post") do %>
 <%= hidden_field_tag :user_id, value = current_user.id %><br />
@@ -34,7 +34,8 @@ $(function () {
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
     $.get("/candies/" + nextId + ".json", function(data) {
       debugger
-    $(".candyName").text(data.name);
+      $("#candyTaste").append("<p>" + candy.name + "</p>");
+
     $(".candyTaste").text(data.taste);
     $(".candyAppetite").text(data.appetite);
     $(".candyCost").text(data.cost);
