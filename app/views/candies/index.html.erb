@@ -14,10 +14,11 @@
 <script type="text/javascript" charset="utf-8">
   
 function postCandies() {
-    $.get("/candies/", function(candies) 
-    candies.forEach(candy => {
-      $("#" + candy.taste + "Candies").append("<a href='/candies/" + candy.id + "'>" + candy.name + "</a><br>");
 
+    $.get("/candies/", function(candies) {
+    candies.forEach(candy => {   
+      $("#" + candy.taste + "Candies").append("<a href='/candies/" + candy.id + "'>" + candy.name + "</a><br>");   
+      debugger
     })
   });
 };
