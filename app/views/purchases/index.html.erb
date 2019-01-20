@@ -1,46 +1,31 @@
- 
  <div class="purchase">
-  <% @purchases.each do |purchase| %>
-
-<li><%= link_to "Purchase ID: #{purchase.id}" , purchase_path(purchase) %></li>
-
-<p class="purchaseCandyName">Candy: <%=purchase.candy.name%> </p>
-<p class="purchaseCandyTaste">Candy flavor: <%= purchase.candy.taste %></p>
-<p class="purchaseCandyAppetite">Candy appetite rating: <%= purchase.candy.appetite %></p>
-<p class="purchaseCandyCost">Cost of candy: <%= purchase.candy.cost %> dollars</p>
-<p class="purchasePaymentType">Payment Type: <%= purchase.payment_type %></p>
-
+<% @purchases.each do |purchase| %>
+  <li><%= link_to "Purchase ID: #{purchase.id}" , purchase_path(purchase) %></li>
+  <p class="purchaseCandyName">Candy: <%=purchase.candy.name%> </p>
+  <p class="purchaseCandyTaste">Candy Flavor: <%= purchase.candy.taste %></p>
+  <p class="purchaseCandyAppetite">Candy Appetite Rating: <%= purchase.candy.appetite %></p>
+  <p class="purchaseCandyCost">Cost of Candy: <%= purchase.candy.cost %> dollars</p>
+  <p class="purchasePaymentType">Payment Type: <%= purchase.payment_type %></p>
 <% end %>
 </div>
 
- <script type="text/javascript" charset="utf-8">
- class Purchase {
-  constructor({user_id, candy_id, payment_type}) {
-    this.user_id= user_id
-    this.candy_id= candy_id
-    this.payment_type = payment_type
-  }
-  formatHTML(){}
-}
-    
-       $(function () {
-
-           $.getJSON("/purchases/");
-           debugger
-           
-           (function(purchases) {
-            for(var i=0; i < purchases.length; i++) {
-             	
-             debugger
-            
-           $(".purchaseCandyName").text(purchase.candy.name);
-           $(".purchaseCandyTaste").text(candy.taste) 
-           $(".purchaseCandyAppetite").text(purchase.candy.appetite)
-           $(".purchaseCandyCost").text(purchase.candy.cost)
-           $(".purchasePaymentType").text(purchase.payment_type)
-            
-           
-         };
-       });
-  })
-   </script>
+<script type="text/javascript" charset="utf-8">
+  function getPurchases() {
+    $.getJSON("/purchases/", function(purchases) {
+    debugger
+      purchases.forEach(purchase => {   
+        $(".Purchase").append("<a href='/purchases/" + purchase.id + "'</a><br>");   
+        $(".Purchase").text("Candy: " + purchase.candy.name);
+        $(".Purchase").text("Candy Flavor: " + purchase.candy.taste) 
+        $(".Purchase").text("Candy Appetite Rating: " + purchase.candy.appetite)
+        $(".Purchase").text("Cost of Candy: " + purchase.candy.cost)
+        $(".Purchase").text("Payment Type: " + purchase.payment_type)
+      })  
+    });
+  };
+  getPurchases();
+</script>
+<br>
+<%= link_to 'Log Out', signout_path %>
+<%= link_to 'See candies', candies_path %>
+<%= link_to 'User Profile', user_path(@user) %>

@@ -4,9 +4,11 @@ class PurchasesController < ApplicationController
   def index
     @candies= Candy.all
     @purchases= Purchase.all
+    @user = current_user
     respond_to do |format|
+      format.json {render json: @purchases}
       format.html {render :index}
-      format.json {render json: @purchase}
+      
     end
   end
 
