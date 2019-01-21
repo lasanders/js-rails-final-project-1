@@ -14,9 +14,9 @@ class CandiesController < ApplicationController
   def show
     @candy = Candy.find(params[:id])
     respond_to do |format|
-      
-      format.html { render :show }
       format.json { render json: @candy}
+      format.html { render :show }
+      # format.json { render json: @candy}
       # format.html { render :index }
     end
   end
