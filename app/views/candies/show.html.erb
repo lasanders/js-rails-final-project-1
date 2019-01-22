@@ -40,16 +40,16 @@
 <script type="text/javascript" charset="utf-8">
 $(function () {
   $(".js-next").on("click", function(e) {
-    e.preventDefault()
-    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-    $.get("/candies/" + nextId + ".json", function(data) {
+  e.preventDefault()
+  var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+  $.get("/candies/" + nextId + ".json", function(data) {
       debugger
-    $(".candyName").text("Candy: " + data.name);
-    $(".candyTaste").text("Taste: " + data.taste + " candy");
-    $(".candyAppetite").text("Appetite: " + data.appetite);
-    $(".candyCost").text("Cost: $" + data.cost);
-      $(".candyCount").text("Remaining Count: " + data.count);
-     $(".js-next").attr("data-id", data.id);
+  $(".candyName").text("Candy: " + data.name);
+  $(".candyTaste").text("Taste: " + data.taste + " candy");
+  $(".candyAppetite").text("Appetite: " + data.appetite);
+  $(".candyCost").text("Cost: $" + data.cost);
+  $(".candyCount").text("Remaining Count: " + data.count);
+  $(".js-next").attr("data-id", data.id);
     });
   });
 });
@@ -64,15 +64,15 @@ class Candy {
 }
 Candy.prototype.comment = comment.create
 debugger
-    function candyComment() {
+  function candyComment() {
   $('form').submit(function(event) {
-    //prevent form from submitting the default way
-    event.preventDefault();
-    $.get("/candies/", function(candies) { 
-      debugger
-    $("#candyComments").append("Candy: " + comment.value);
+  //prevent form from submitting the default way
+  event.preventDefault();
+  $.get("/candies/", function(candies) {  
+debugger
+  $("#candyComments").append("Candy: " + comment.value);
     })
-})
-  }
-  candyComment()
+  })
+}
+candyComment()
 </script>
