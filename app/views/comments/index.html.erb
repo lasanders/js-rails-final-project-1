@@ -1,0 +1,6 @@
+<div class="comment">
+<% @comments.each do |comment| %>
+  <p class="commentCandyName">Candy: <%=comment.candy.name%> </p>
+  <p class="commentName">Payment Type: <%= comment.name %></p>
+<% end %>
+</div>

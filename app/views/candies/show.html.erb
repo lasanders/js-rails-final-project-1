@@ -29,9 +29,12 @@
 <br></br>
 <div id="comments">
   <div id="candyComments"
-  <h2>Please Leave a Comment!</h2>
-    <%= form_tag("/candies", method: "post") do %>
-    <%= label_tag :comment %><br><%= text_field_tag :comment %>
+  <h2>Please Leave a Comment!</h2><br>
+    <%= form_tag("/comments", method: "post") do %>
+      <p class="Comment">Comment: <%= @comment %></p>
+    <%= hidden_field_tag :user_id, value = current_user.id %><br />
+  <%= hidden_field_tag :candy_id, value = @candy.id %>
+    <%= label_tag :name %><br><%= text_field_tag :name %>
     <div class="actions"><%= submit_tag 'Submit Comment', :class => 'btn btn-primary' %></div>
     <% end %>
   </div>
@@ -53,26 +56,5 @@ $(function () {
     });
   });
 });
-class Candy {	
-  constructor({name, taste, appetite, cost, count}) {
-    this.name = name	    
-    this.taste = taste
-    this.appetite = appetite
-    this.cost = cost	
-    this.count = count
-  }	 
-}
-Candy.prototype.comment = comment.create
-debugger
-  function candyComment() {
-  $('form').submit(function(event) {
-  //prevent form from submitting the default way
-  event.preventDefault();
-  $.get("/candies/", function(candies) {  
-debugger
-  $("#candyComments").append("Candy: " + comment.value);
-    })
-  })
-}
-candyComment()
+
 </script>
