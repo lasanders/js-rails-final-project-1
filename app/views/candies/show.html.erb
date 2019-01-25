@@ -17,15 +17,6 @@
   <% end %>
 </div>
 
-<h2>Please Leave a Comment!</h2><br>
-<%= form_tag("/candies", method: "post") do %>
-<%= hidden_field_tag :user_id, value = current_user.id %><br />
-<%= hidden_field_tag :candy_id, value = @candy.id %>
-
-<p class="Comment">Comment: <%= @comment.name %></p>
-<% end %>
-
-
 <br>
 <% if current_user.employee %>
 <button><%= link_to 'Edit Candy', edit_candy_path(@candy) %></button>
@@ -58,15 +49,5 @@ $(function () {
 });
 
 
-function getComments() {
-    $.getJSON("/comments/", function(comments) {
-    debugger
-comments.forEach(comment => {   
-  if (this.candy_id {
-    debugger
-  $(".Comment").append("Comment: " + comment.name);
-    });
-    });
-});
-}
+
 </script>

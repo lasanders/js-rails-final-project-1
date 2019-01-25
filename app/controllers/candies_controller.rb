@@ -4,21 +4,20 @@ class CandiesController < ApplicationController
   def index
     @candies= Candy.all
     @purchases= Purchase.all
-    @comments=Comment.all
+    @comments= Comment.all
     @user = current_user
     respond_to do |format|
-      format.json {render json: @candies}
-      format.html {render :index}
-    
+      format.json { render json: @candies}
+       format.html { render :index }
     end
   end
 
   def show
     @candy = Candy.find(params[:id])
-   @comment = Comment.find(params[:id])
-    respond_to do |format|
+  
+     respond_to do |format|
       format.json { render json: @candy}
-      format.html { render :show }
+       format.html { render :show }
       # format.json { render json: @candy}
       # format.html { render :index }
     end
