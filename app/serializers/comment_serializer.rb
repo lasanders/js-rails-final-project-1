@@ -1,5 +1,5 @@
 class CommentSerializer < ActiveModel::Serializer
-    attributes :name, :id, :user_id, :candy_id
+    attributes :id, :name, :user_id, :candy_id
     #
     belongs_to:user
     belongs_to:candy

@@ -16,6 +16,16 @@
   <div class="actions"><%= submit_tag 'Purchase Candy', :class => 'btn btn-primary' %></div>
   <% end %>
 </div>
+
+<h2>Please Leave a Comment!</h2><br>
+<%= form_tag("/candies", method: "post") do %>
+<%= hidden_field_tag :user_id, value = current_user.id %><br />
+<%= hidden_field_tag :candy_id, value = @candy.id %>
+
+<p class="Comment">Comment: <%= @comment.name %></p>
+<% end %>
+
+
 <br>
 <% if current_user.employee %>
 <button><%= link_to 'Edit Candy', edit_candy_path(@candy) %></button>
@@ -25,20 +35,10 @@
 <% else %>
 <%= link_to 'Log Out', signout_path%>
 <%= link_to 'See candies', candies_path %>
+
 <%end%>
 <br></br>
-<div id="comments">
-  <div id="candyComments"
-  <h2>Please Leave a Comment!</h2><br>
-    <%= form_tag("/comments", method: "post") do %>
-      <p class="Comment">Comment: <%= @comment %></p>
-    <%= hidden_field_tag :user_id, value = current_user.id %><br />
-  <%= hidden_field_tag :candy_id, value = @candy.id %>
-    <%= label_tag :name %><br><%= text_field_tag :name %>
-    <div class="actions"><%= submit_tag 'Submit Comment', :class => 'btn btn-primary' %></div>
-    <% end %>
-  </div>
-<div>     
+
 
 <script type="text/javascript" charset="utf-8">
 $(function () {
@@ -57,4 +57,16 @@ $(function () {
   });
 });
 
+
+function getComments() {
+    $.getJSON("/comments/", function(comments) {
+    debugger
+comments.forEach(comment => {   
+  if (this.candy_id {
+    debugger
+  $(".Comment").append("Comment: " + comment.name);
+    });
+    });
+});
+}
 </script>

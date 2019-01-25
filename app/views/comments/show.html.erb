@@ -1,0 +1,28 @@
+<div class="comment">
+<%= form_tag("/comments", method: "post") do %>
+  <%= hidden_field_tag :user_id, value = current_user.id %>
+  <%= hidden_field_tag :candy_id, value = @comment.candy_id %>
+  <a href="#" class="js-next"  user-id="<%=@comment.user_id%>" data-id="<%=@comment.id%>"> Next Comment</a>
+  <h2 class="commentCandyName"><%= @comment.candy.name %></h2>
+  <p class="commentName">Comment: <%= @comment.name %></p>
+  
+  <% end %>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-next").on("click", function(e) {
+  e.preventDefault()
+  debugger
+ 
+  var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+  debugger
+  $.get("/comments/" + nextId + ".json", function(comment) {
+  debugger    
+  $(".commentCandyName").text("Candy: " + comment.candy.name);
+  $(".commentName").text("Comment: " + comment.name);
+  $(".js-next").attr("data-id", comment.id);
+    });
+  });
+});
+</script>

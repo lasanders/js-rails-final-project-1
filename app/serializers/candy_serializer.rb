@@ -3,4 +3,5 @@ class CandySerializer < ActiveModel::Serializer
 
   has_many :purchases
   has_many :users, through: :purchases
+  has_many :comments, through: :users
 end

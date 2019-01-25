@@ -1,60 +1,43 @@
 class CommentsController < ApplicationController
-  
+  before_action :current_user
   
     def index
-      @comments= Comment.all
       @candies= Candy.all
+      @comments= Comment.all
+      # @user = current_user
+      respond_to do |format|
+        format.json {render json: @comments}
+        format.html {render :index}
+    end
+  end
+
+  def show
+    @comment = Comment.find(params[:id])
+    @candy = Candy.find(params[:id])
       @user = current_user
       respond_to do |format|
-        format.html {render :index}
-        # format.json {render json: @comments}
+        format.json {render json: @comment}
+        format.html {render :show}
+        
         
     end
   end
+
+  def new
+    @comment = Comment.new(:name => :name, :user_id => params[:user_id], :candy_id => params[:candy_id])
+  end
+
+  def create
+    @comment = Comment.new(:name => params[:name], :user_id => params[:user_id], :candy_id => params[:candy_id])
+    #   binding.pry
    
-      def candies
-        @user = User.find(params[:id])
-      end    
-        
-      
+    @comment.save
     
-
-    def new
-      @comment= Comment.new
-  
-    end
-  
-    def create
-      @comment= Comment.create(comment_params)
-        
-        @comments = Comment.all
-       render json: @comment
-          
-          
-  
-  end
-
-    def edit
-      @comment= Comment.find(params[:id])
-    end
-  
-    def update
-      @comment= Comment.find(params[:id])
-      @comment.update(comment_params)
-        respond_to do |format|
-        
-          format.json {render json: @comment}
-    end
-  end
-  
-    def destroy
-  
-      @comment= Comment.last
-      @comment.destroy
       respond_to do |format|
-        format.html {render :index}
-      end
-    end
+        format.json {render json: @comments}
+        format.html {render :show}
+  end
+end
   
     private
   
@@ -64,7 +47,7 @@ class CommentsController < ApplicationController
     end
   
     def comment_params
-      params.permit(:user_id, :candy_id, :name)
+      params.require(:comment).permit(:name, :user_id, :candy_id)
     end
   
   end

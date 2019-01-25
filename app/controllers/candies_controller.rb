@@ -1,19 +1,21 @@
 class CandiesController < ApplicationController
-  before_action:set_candy, only: [ :edit, :update]
+  before_action:set_candy, only: [:edit, :update]
 
   def index
     @candies= Candy.all
     @purchases= Purchase.all
+    @comments=Comment.all
     @user = current_user
     respond_to do |format|
       format.json {render json: @candies}
       format.html {render :index}
+    
     end
   end
 
   def show
     @candy = Candy.find(params[:id])
-    
+   @comment = Comment.find(params[:id])
     respond_to do |format|
       format.json { render json: @candy}
       format.html { render :show }
@@ -29,9 +31,7 @@ class CandiesController < ApplicationController
 
   def create
     @candy= Candy.new(candy_params)
-    @comment = Comment.create(:name => params[:name], :user_id => params[:user_id], :candy_id => params[:candy_id])
-    if current_user.employee && @candy.save
-        render json: @comment
+     if current_user.employee && @candy.save
        render json: @candy
     else
       candy_error
@@ -75,7 +75,7 @@ class CandiesController < ApplicationController
   end
 
   def candy_params
-    params.require(:candy).permit(:name, :taste, :cost, :appetite, :count, user_attributes: [:name, :password, :taste, :cash, :appetite, :employee], user_ids: [], purchases_attributes: [:candy_id, :user_id], purchase_ids: [], comment_attributes: [:name, :candy_id, :user_id], comment_ids: [])
+    params.require(:candy).permit(:name, :taste, :cost, :appetite, :count, user_attributes: [:name, :password, :taste, :cash, :appetite, :employee], user_ids: [], purchases_attributes: [:candy_id, :user_id], purchase_ids: [], comments_attributes: [:name, :candy_id, :user_id], comment_ids: [])
   end
 
 end

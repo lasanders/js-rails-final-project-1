@@ -8,6 +8,7 @@
       <h2>Sweet Candies</h2>
     </div>
 </div>
+
 <br>
 <% if current_user.employee %>
   <%= link_to 'New Candy', new_candy_path %>
@@ -19,7 +20,8 @@
 <script type="text/javascript" charset="utf-8">
   
 function postCandies() {
-    $.get("/candies/", function(candies) {
+    $.getJSON("/candies/", function(candies) {
+      debugger
     candies.forEach(candy => {   
     $("#" + candy.taste + "Candies").append("<a href='/candies/" + candy.id + "'>" + candy.name + "</a><br>");   
     });
