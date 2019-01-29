@@ -27,15 +27,18 @@
 <%= link_to 'See candies', candies_path %>
 <%end%>
 <br></br>
-<div id="comments">
+
   <div id="candyComments"
   <h2>Please Leave a Comment!</h2>
     <%= form_tag("/candies", method: "post") do %>
     <%= label_tag :comment %><br><%= text_field_tag :comment %>
     <div class="actions"><%= submit_tag 'Submit Comment', :class => 'btn btn-primary' %></div>
     <input type="reset" value="Reset" name="Reset"> 
+      <% end %>
 <br>
-    <% end %>
+    <div id="comments">
+<li><div id="allComments"><%= @comment %></div></li>
+    
   </div>
 <div>     
 
@@ -56,11 +59,15 @@ $(function () {
   });
 });
 class Comment {	
-  constructor({name, user_id, candy_id}) {
-    this.name = name	    
+  constructor({description, user_id, candy_id}) {
+    this.description = description	    
     this.user_id = user_id
     this.candy_id = candy_id
-  }	 
+  }
+
+  getFormatted() {
+    return this.description + this.user_id
+  }
 }
 
   function candyComment() {
@@ -69,20 +76,15 @@ class Comment {
   event.preventDefault();
   
   $.get("/candies/", function(candies) {  
-  
 
     debugger
-  $("#candyComments").append("Candy Comment: " + comment.value); 
-  Comment.prototype.comments = []
-   Comment.prototype.comments.push(comment.value)
-   $('form').submit(function(event) {
-     return false;
-      $("form")[0].reset()
-      
+ /* $("#allComments").append("Candy Comment: " + comment.value); 
+  var comments = Comment.prototype.comments
+  $('form')[0].reset() /*
+   
 });
-debugger
-    })
-  })
+   })
   }
+  
 candyComment()
 </script>
