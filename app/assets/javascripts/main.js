@@ -1,7 +1,6 @@
 $(function () {
     $(".js-next").on("click", function(e) {
     e.preventDefault()
-    debugger
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
     $.get("/candies/" + nextId + ".json", function(data) {
         debugger
@@ -20,7 +19,7 @@ $(function () {
         var can = parseInt($(".js-next").attr("data-id")) 
         comments.forEach(comment => {
           Object.getPrototypeOf(comment).getFormatted = () => {
-            return '$$$$$$$' + this.name;
+            return '$$$$$$$' + comment.name;
           };
         if(comment.candy_id == can) {
     $("#allComments").append("Candy Comment: " + comment.getFormatted() + "<br>");
