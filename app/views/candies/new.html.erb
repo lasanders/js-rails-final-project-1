@@ -36,23 +36,5 @@
   <p id="candyCount"></p><br> 
 </div>
 
-<script type="text/javascript" charset="utf-8">
-$(function () {
-  $('form').submit(function(event) {
-    //prevent form from submitting the default way
-    event.preventDefault();
-    var values = $(this).serialize();
-    var posting = $.post('/candies', values);
-    posting.done(function(data) {
-      var candy = data;
-      $("#candyName").text(candy.name);
-      $("#candyTaste").text(candy.taste);
-      $("#candyAppetite").text(candy.appetite);
-      $("#candyCost").text(candy.cost);
-      $("#candyCount").text(candy.count);
-    });  
-  });
-})
-</script>
 <%= link_to 'See candies', candies_path %>
 <%= link_to 'Log Out', signout_path%>

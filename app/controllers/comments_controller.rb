@@ -12,11 +12,11 @@ class CommentsController < ApplicationController
     end
 
   def show
-    @comments = Comment.find(params[:id])
+    @comment = Comment.find(params[:id])
     @candy = Candy.find(params[:id])
       @user = current_user
       respond_to do |format|
-        format.json {render json: @comments}
+        format.json {render json: @comment}
         format.html {render :show}
   
         
@@ -31,10 +31,7 @@ class CommentsController < ApplicationController
     @comment = Comment.create(:name => params[:name], :user_id => params[:user_id], :candy_id => params[:candy_id])
     #   binding.pry
    
-      respond_to do |format|
-        format.json {render json: @comments}
-        format.html {render :show}
-      end
+    redirect_to candy_path(@comment.candy)
   end
   
     private

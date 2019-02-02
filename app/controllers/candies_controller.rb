@@ -18,8 +18,6 @@ class CandiesController < ApplicationController
      respond_to do |format|
       format.json { render json: @candy}
        format.html { render :show }
-      # format.json { render json: @candy}
-      # format.html { render :index }
     end
   end
 

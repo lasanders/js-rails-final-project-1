@@ -21,7 +21,6 @@
   
 function postCandies() {
     $.getJSON("/candies/", function(candies) {
-      debugger
     candies.forEach(candy => {   
     $("#" + candy.taste + "Candies").append("<a href='/candies/" + candy.id + "'>" + candy.name + "</a><br>");   
     });
