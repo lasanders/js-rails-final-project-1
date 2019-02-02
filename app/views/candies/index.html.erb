@@ -15,14 +15,14 @@
 <% end %>
   <%= link_to 'Log Out', signout_path%>
   <%= link_to 'User Profile', user_path(@user) %>
-  <br>
+<br>
 
 <script type="text/javascript" charset="utf-8">
   
 function postCandies() {
-    $.getJSON("/candies/", function(candies) {
+  $.getJSON("/candies/", function(candies) {
     candies.forEach(candy => {   
-    $("#" + candy.taste + "Candies").append("<a href='/candies/" + candy.id + "'>" + candy.name + "</a><br>");   
+      $("#" + candy.taste + "Candies").append("<a href='/candies/" + candy.id + "'>" + candy.name + "</a><br>");   
     });
   });
 };

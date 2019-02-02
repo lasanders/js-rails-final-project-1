@@ -2,15 +2,15 @@
 
 
 <div class="candy">
-<%= form_tag("/purchases", method: "post") do %>
-  <%= hidden_field_tag :user_id, value = current_user.id %>
-  <%= hidden_field_tag :candy_id, value = @purchase.candy_id %>
-  <a href="#" class="js-next"  user-id="<%=@purchase.user_id%>" data-id="<%=@purchase.id%>"> Next Purchase</a>
-  <h2 class="purchaseCandyName"><%= @purchase.candy.name %></h2>
-  <p class="purchaseCandyTaste">Candy Taste: <%= @purchase.candy.taste %></p>
-  <p class="purchaseCandyAppetite">Candy Appetite Rating: <%= @purchase.candy.appetite %></p>
-  <p class="purchaseCandyCost">Cost of Candy: <%= @purchase.candy.cost %> dollars</p>
-  <p class="purchasePaymentType">Payment Type: <%= @purchase.payment_type %></p>
+  <%= form_tag("/purchases", method: "post") do %>
+    <%= hidden_field_tag :user_id, value = current_user.id %>
+    <%= hidden_field_tag :candy_id, value = @purchase.candy_id %>
+    <a href="#" class="js-next"  user-id="<%=@purchase.user_id%>" data-id="<%=@purchase.id%>"> Next Purchase</a>
+    <h2 class="purchaseCandyName"><%= @purchase.candy.name %></h2>
+    <p class="purchaseCandyTaste">Candy Taste: <%= @purchase.candy.taste %></p>
+    <p class="purchaseCandyAppetite">Candy Appetite Rating: <%= @purchase.candy.appetite %></p>
+    <p class="purchaseCandyCost">Cost of Candy: <%= @purchase.candy.cost %> dollars</p>
+    <p class="purchasePaymentType">Payment Type: <%= @purchase.payment_type %></p>
   <% end %>
 </div>
 
@@ -32,9 +32,7 @@
         $(".purchaseCandyCost").text("Cost of Candy: " + purchase.candy.cost)
         $(".purchasePaymentType").text("Payment Type: " + purchase.payment_type)
         $(".js-next").attr("data-id", purchase.id);
-       
-
       });
     });
   });
-  </script>
+</script>

@@ -1,20 +1,20 @@
 <h2>Hi <%= @user.name %>!</h2>
 
 <% if @message %>
-<p><%= @message %></p>
+    <p><%= @message %></p>
 <% end %>
 
 <p>Taste: <%= @user.taste %></p>
 <p>Cash: <%= @user.cash %></p>
 <p>Appetite: <%= @user.appetite %></p>
 <p>Employee: <%= @user.employee %></p>
-
 <br></br>
-<h2>Purchase History</h2>
-<% @user.purchases.each do |purchase| %>
 
-<li><%= link_to "Purchase ID: #{purchase.id}", user_purchase_path(@user.id, purchase) %></li>
-<% end %>
+<h2>Purchase History</h2>
+    <% @user.purchases.each do |purchase| %>
+        <li><%= link_to "Purchase ID: #{purchase.id}", user_purchase_path(@user.id, purchase) %></li>
+    <% end %>
+
 <br>
 <%= link_to 'New Purchases', new_user_purchase_path(@user) %>
 <%= link_to 'User candies', user_candies_path %>

@@ -3,37 +3,39 @@
 <% end %>
 
 <div class="candy">
-<h2 class="candyName">Candy: <%= @candy.name %></h2>
-<p class="js-next" data-id="<%=@candy.id%>"></p>
-<p class="candyTaste">Taste: <%= @candy.taste %> candy</p>
-<p class="candyAppetite">Appetite: <%= @candy.appetite %></p>
-<p class="candyCost">Cost: $<%= @candy.cost %></p>
-<p class="candyCount">Remaining Count: <%= @candy.count %></p>
+  <h2 class="candyName">Candy: <%= @candy.name %></h2>
+  <p class="js-next" data-id="<%=@candy.id%>"></p>
+  <p class="candyTaste">Taste: <%= @candy.taste %> candy</p>
+  <p class="candyAppetite">Appetite: <%= @candy.appetite %></p>
+  <p class="candyCost">Cost: $<%= @candy.cost %></p>
+  <p class="candyCount">Remaining Count: <%= @candy.count %></p>
 </div>
+
 <%= form_tag("/purchases", method: "post") do %>
   <%= hidden_field_tag :user_id, value = current_user.id %><br />
   <%= hidden_field_tag :candy_id, value = @candy.id %>
   <%= label_tag :payment_type %><br><%= text_field_tag :payment_type %><%= submit_tag 'Purchase Candy', :class => 'btn btn-primary' %></div>
   <% end %>
 </div>
+
 <%= form_tag("/comments", method: "post") do %>
-<%= hidden_field_tag :user_id, value = current_user.id %><br />
-<%= hidden_field_tag :candy_id, value = @candy.id %><br />
-<%= label_tag :Comment %><br><%= text_field_tag :name%><%= submit_tag 'Submit Comment', :class => 'btn btn-primary' %>
-<% end %>
+  <%= hidden_field_tag :user_id, value = current_user.id %><br />
+  <%= hidden_field_tag :candy_id, value = @candy.id %><br />
+  <%= label_tag :Comment %><br><%= text_field_tag :name%><%= submit_tag 'Submit Comment', :class => 'btn btn-primary' %>
+  <% end %>
 <br>
+
 <div id="allComments"></div><br>
-
 <br>
-<% if current_user.employee %>
-<button><%= link_to 'Edit Candy', edit_candy_path(@candy) %></button>
-<button><%= link_to 'See Candies', candies_path %></button>
-<button><%= link_to 'Delete Candy', delete_path %></button>
-<button><%= link_to 'Log Out', signout_path%></button>
-<% else %>
-<%= link_to 'Log Out', signout_path%>
-<%= link_to 'See Candies', candies_path %>
 
+<% if current_user.employee %>
+  <button><%= link_to 'Edit Candy', edit_candy_path(@candy) %></button>
+  <button><%= link_to 'See Candies', candies_path %></button>
+  <button><%= link_to 'Delete Candy', delete_path %></button>
+  <button><%= link_to 'Log Out', signout_path%></button>
+<% else %>
+  <%= link_to 'Log Out', signout_path%>
+< %= link_to 'See Candies', candies_path %>
 <%end%>
 <br></br>
 
@@ -56,4 +58,4 @@
      })
     }
    getComments()
- </script>
+</script>

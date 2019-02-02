@@ -1,32 +1,30 @@
 <div class="comment">
     <%= form_tag("/comments", method: "post") do %>
-    <%= hidden_field_tag :user_id, value = current_user.id %>
-    <%= hidden_field_tag :candy_id, value = @comment.candy_id %>
-    <a href="#" class="js-next"  user-id="<%=@current_user.id%>" data-id="<%=@comment.id%>"> Next Comment</a>
-    <h2 class="commentCandyName"><%= @comment.candy.name %></h2>
-    <p class="commentName">Comment: <%= @comment.name %></p>
+      <%= hidden_field_tag :user_id, value = current_user.id %>
+      <%= hidden_field_tag :candy_id, value = @comment.candy_id %>
+      <a href="#" class="js-next"  user-id="<%=@current_user.id%>" data-id="<%=@comment.id%>"> Next Comment</a>
+      <h2 class="commentCandyName"><%= @comment.candy.name %></h2>
+      <p class="commentName">Comment: <%= @comment.name %></p>
     <% end %>
 </div>
 <br>
-<%= link_to 'Log Out', signout_path%>
-<%= link_to 'See candies', candies_path %>
+
+<button><%= link_to 'Log Out', signout_path%></button>
+<button><%= link_to 'See candies', candies_path %></button>
 <button><%= link_to 'Edit Candy', edit_comment_path(@comment) %></button>
 <button><%= link_to 'See candies', candies_path %></button>
 
 
 <script type="text/javascript" charset="utf-8">
-$(function () {
-  $(".js-next").on("click", function(e) {
+  $(function () {
+    $(".js-next").on("click", function(e) {
       e.preventDefault()
-      debugger
       var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-      debugger
-      $.get("/comments/" + nextId + ".json", function(comment) {
-        debugger    
+      $.get("/comments/" + nextId + ".json", function(comment) {  
         $(".commentCandyName").text("Candy: " + comment.candy.name);
         $(".commentName").text("Comment: " + comment.name);
         $(".js-next").attr("data-id", comment.id);
       });
+    });
   });
-});
 </script>

@@ -1,18 +1,17 @@
- <div class="purchase">
-<% @purchases.each do |purchase| %>
-  <li><%= link_to "Purchase ID: #{purchase.id}" , purchase_path(purchase) %></li>
-  <p class="purchaseCandyName">Candy: <%=purchase.candy.name%> </p>
-  <p class="purchaseCandyTaste">Candy Flavor: <%= purchase.candy.taste %></p>
-  <p class="purchaseCandyAppetite">Candy Appetite Rating: <%= purchase.candy.appetite %></p>
-  <p class="purchaseCandyCost">Cost of Candy: <%= purchase.candy.cost %> dollars</p>
-  <p class="purchasePaymentType">Payment Type: <%= purchase.payment_type %></p>
-<% end %>
+<div class="purchase">
+  <% @purchases.each do |purchase| %>
+    <li><%= link_to "Purchase ID: #{purchase.id}" , purchase_path(purchase) %></li>
+    <p class="purchaseCandyName">Candy: <%=purchase.candy.name%> </p>
+    <p class="purchaseCandyTaste">Candy Flavor: <%= purchase.candy.taste %></p>
+    <p class="purchaseCandyAppetite">Candy Appetite Rating: <%= purchase.candy.appetite %></p>
+    <p class="purchaseCandyCost">Cost of Candy: <%= purchase.candy.cost %> dollars</p>
+    <p class="purchasePaymentType">Payment Type: <%= purchase.payment_type %></p>
+  <% end %>
 </div>
 
 <script type="text/javascript" charset="utf-8">
   function getPurchases() {
     $.getJSON("/purchases/", function(purchases) {
-    debugger
       purchases.forEach(purchase => {   
         $(".Purchase").append("<a href='/purchases/" + purchase.id + "'</a><br>");   
         $(".Purchase").text("Candy: " + purchase.candy.name);

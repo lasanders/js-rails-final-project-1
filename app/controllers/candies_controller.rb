@@ -65,6 +65,7 @@ class CandiesController < ApplicationController
     # redirect_to candies_path
     respond_to do |format|
       format.html {render :index}
+      format.json {render json: @candies}
     end
   end
 
