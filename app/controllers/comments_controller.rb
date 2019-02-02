@@ -33,6 +33,18 @@ class CommentsController < ApplicationController
    
     redirect_to candy_path(@comment.candy)
   end
+
+  def edit
+    @comment= Comment.find(params[:id])
+  end
+
+  def update
+    @comment= Comment.find(params[:id])
+    @comment.update(comment_params)
+      redirect_to candy_path(@comment.candy)
+  
+  end
+
   
     private
   

@@ -7,6 +7,12 @@
     <p class="commentName">Comment: <%= @comment.name %></p>
     <% end %>
 </div>
+<br>
+<%= link_to 'Log Out', signout_path%>
+<%= link_to 'See candies', candies_path %>
+<button><%= link_to 'Edit Candy', edit_comment_path(@comment) %></button>
+<button><%= link_to 'See candies', candies_path %></button>
+
 
 <script type="text/javascript" charset="utf-8">
 $(function () {

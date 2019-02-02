@@ -27,12 +27,12 @@
 <br>
 <% if current_user.employee %>
 <button><%= link_to 'Edit Candy', edit_candy_path(@candy) %></button>
-<button><%= link_to 'See candies', candies_path %></button>
-<button><%= link_to 'Delete candy', delete_path %></button>
+<button><%= link_to 'See Candies', candies_path %></button>
+<button><%= link_to 'Delete Candy', delete_path %></button>
 <button><%= link_to 'Log Out', signout_path%></button>
 <% else %>
 <%= link_to 'Log Out', signout_path%>
-<%= link_to 'See candies', candies_path %>
+<%= link_to 'See Candies', candies_path %>
 
 <%end%>
 <br></br>

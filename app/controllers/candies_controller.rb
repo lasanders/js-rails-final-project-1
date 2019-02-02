@@ -29,12 +29,16 @@ class CandiesController < ApplicationController
   def create
     @candy= Candy.new(candy_params)
      if current_user.employee && @candy.save
-       render json: @candy
-    else
+      respond_to do |format|
+        format.json { render json: @candy}
+         format.html { render :show }
+      end
+        else
       candy_error
       render json: new
     end
   end
+
 
   def edit
     @candy= Candy.find(params[:id])
