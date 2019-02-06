@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
 
   def show
     @comment = Comment.find(params[:id])
-    @candy = Candy.find(params[:id])
+    # @candy = Candy.find(params[:id])
       @user = current_user
       respond_to do |format|
         format.json {render json: @comment}

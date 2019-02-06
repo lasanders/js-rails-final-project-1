@@ -2,7 +2,7 @@
     <%= form_tag("/comments", method: "post") do %>
       <%= hidden_field_tag :user_id, value = current_user.id %>
       <%= hidden_field_tag :candy_id, value = @comment.candy_id %>
-      <a href="#" class="js-next"  user-id="<%=@current_user.id%>" data-id="<%=@comment.id%>"> Next Comment</a>
+      <a href="#" class="js-next"  data-id="<%=@comment.id%>"> Next Comment</a>
       <h2 class="commentCandyName"><%= @comment.candy.name %></h2>
       <p class="commentName">Comment: <%= @comment.name %></p>
     <% end %>
