@@ -1,5 +1,1 @@
-<%= form_tag("/comments", method: "post") do %>
-    <%= hidden_field_tag :user_id, value = current_user.id %><br />
-    <%= hidden_field_tag :candy_id, value = @comment.candy.id %><br />
-    <%= " #{@comment.candy.name} " %><%= label_tag :Comment %><br><%= text_field_tag :name %><%= value = " #{@comment.name} " %><%= submit_tag 'Submit Comment', :class => 'btn btn-primary' %>
-<% end %>
+<%= render 'form' %>
