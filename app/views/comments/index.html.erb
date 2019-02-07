@@ -4,3 +4,16 @@
     <p class="commentName">Comment: <%= comment.name %></p>
   <% end %>
 </div>
+
+<script type="text/javascript" charset="utf-8">
+  function getComments() {
+    $.getJSON("/comments/", function(comments) {
+      comments.forEach(comment => {   
+        $(".Comment").text("Candy: " + comment.candy.name);
+        $(".Comment").text("Comment: " + comment.name)
+      })  
+    });
+  };
+  getComments();
+</script>
+<br>
