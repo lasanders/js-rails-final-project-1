@@ -15,14 +15,14 @@
   <%= hidden_field_tag :user_id, value = current_user.id %><br />
   <%= hidden_field_tag :candy_id, value = @candy.id %>
   <%= label_tag :payment_type %><br><%= text_field_tag :payment_type %><%= submit_tag 'Purchase Candy', :class => 'btn btn-primary' %></div>
-  <% end %>
+<% end %>
 </div>
 
 <%= form_tag("/comments", method: "post") do %>
   <%= hidden_field_tag :user_id, value = current_user.id %><br />
   <%= hidden_field_tag :candy_id, value = @candy.id %><br />
   <%= label_tag :Comment %><br><%= text_field_tag :name%><%= submit_tag 'Submit Comment', :class => 'btn btn-primary' %>
-  <% end %>
+<% end %>
 <br>
 
 <div id="allComments"></div><br>
@@ -35,16 +35,15 @@
   <button><%= link_to 'Log Out', signout_path%></button>
 <% else %>
   <%= link_to 'Log Out', signout_path%>
-< %= link_to 'See Candies', candies_path %>
+  <%= link_to 'See Candies', candies_path %>
 <%end%>
 <br></br>
-
 <script type="text/javascript" charset="utf-8">
   function getFormatted() {
     return this.description + this.user_id
   }
 
-    function getComments(can) {
+   function getComments(can) {
       $.get("/comments/", function(comments) {  
         var can = parseInt($(".js-next").attr("data-id")) 
         comments.forEach(comment => {
@@ -58,10 +57,4 @@
      })
     }
    getComments()
-
-
-
-
-
-   
 </script>

@@ -12,14 +12,14 @@ class User < ActiveRecord::Base
     scope :satisfied, -> { where('appetite >=50' && 'appetite < 75')}
     scope :hungry, -> { where('appetite >=0' && 'appetite < 50')}
 
-      def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap  do |user|
-      user.email = auth.info.email
-      user.name = auth.info.name
-      user.password = "temporary password"
+    def self.from_omniauth(auth)
+      where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap  do |user|
+        user.email = auth.info.email
+        user.name = auth.info.name
+        user.password = "temporary password"
         user.save!(validate: false)
+      end
     end
-  end
 
 
 end

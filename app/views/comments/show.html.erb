@@ -11,20 +11,8 @@
 
 <button><%= link_to 'Log Out', signout_path%></button>
 <button><%= link_to 'See candies', candies_path %></button>
-<button><%= link_to 'Edit Candy', edit_comment_path(@comment) %></button>
+<button><%= link_to 'Edit Comment', edit_comment_path(@comment) %></button>
 <button><%= link_to 'See candies', candies_path %></button>
+  <button><%= link_to 'Delete Candy', delete_path %></button>
 
 
-<script type="text/javascript" charset="utf-8">
-  $(function () {
-    $(".js-next").on("click", function(e) {
-      e.preventDefault()
-      var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-      $.get("/comments/" + nextId + ".json", function(comment) {  
-        $(".commentCandyName").text("Candy: " + comment.candy.name);
-        $(".commentName").text("Comment: " + comment.name);
-        $(".js-next").attr("data-id", comment.id);
-      });
-    });
-  });
-</script>

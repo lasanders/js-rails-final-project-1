@@ -13,20 +13,9 @@
 <% if current_user.employee %>
   <%= link_to 'New Candy', new_candy_path %>
 <% end %>
-  <%= link_to 'Log Out', signout_path%>
+  <%= link_to 'Log Out', signout_path %>
   <%= link_to 'User Profile', user_path(@user) %>
 <br>
 
-<script type="text/javascript" charset="utf-8">
-  
-function postCandies() {
-  $.getJSON("/candies/", function(candies) {
-    candies.forEach(candy => {   
-      $("#" + candy.taste + "Candies").append("<a href='/candies/" + candy.id + "'>" + candy.name + "</a><br>");   
-    });
-  });
-};
-postCandies();
-</script>
 
 

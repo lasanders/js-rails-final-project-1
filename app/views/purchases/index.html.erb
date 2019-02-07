@@ -9,21 +9,6 @@
   <% end %>
 </div>
 
-<script type="text/javascript" charset="utf-8">
-  function getPurchases() {
-    $.getJSON("/purchases/", function(purchases) {
-      purchases.forEach(purchase => {   
-        $(".Purchase").append("<a href='/purchases/" + purchase.id + "'</a><br>");   
-        $(".Purchase").text("Candy: " + purchase.candy.name);
-        $(".Purchase").text("Candy Flavor: " + purchase.candy.taste) 
-        $(".Purchase").text("Candy Appetite Rating: " + purchase.candy.appetite)
-        $(".Purchase").text("Cost of Candy: " + purchase.candy.cost)
-        $(".Purchase").text("Payment Type: " + purchase.payment_type)
-      })  
-    });
-  };
-  getPurchases();
-</script>
 <br>
 <%= link_to 'Log Out', signout_path %>
 <%= link_to 'See candies', candies_path %>

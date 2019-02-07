@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     delete '/signout', to: 'sessions#other_destroy'
    get '/delete', to: 'candies#destroy'
    post '/delete', to: 'candies#destroy'
+   get '/delete', to: 'comments#destroy'
+   post '/delete', to: 'comments#destroy'
   post '/purchases', to: 'purchases#create'
 
    resources :users do

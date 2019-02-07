@@ -15,7 +15,6 @@ class PurchasesController < ApplicationController
   def show
     @purchase = Purchase.find(params[:id])
     @user = current_user
-
     respond_to do |format|
       format.html { render :show }
       format.json { render json: @purchase }
@@ -27,12 +26,10 @@ class PurchasesController < ApplicationController
   def new
     @message = params[:message]
     @purchase = Purchase.new(:user_id => params[:user_id], :candy_id => params[:candy_id])
-
   end
 
   def create
     @purchase = Purchase.new(:user_id => params[:user_id], :candy_id => params[:candy_id], :payment_type => params[:payment_type])
-    #   binding.pry
     if @purchase.get_cavities
       @purchase.update(:payment_type => params[:payment_type])
       @purchase.save
