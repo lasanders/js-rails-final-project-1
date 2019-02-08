@@ -21,9 +21,18 @@
 function postCandies() {
   $.getJSON("/candies/", function(candies) {
     candies.forEach(candy => {   
-      $("#" + candy.taste + "Candies").append("<a href='/candies/" + candy.id + "'>" + candy.name + "</a><br>");   
-    });
+    let candyHTML = "<h3><a href='/candies/" + candy.id + "'>" + candy.name + "</a></h3><br>";
+      $.getJSON("/comments/", function(comments) {
+        comments.forEach(u => {
+          if(u.candy_id == candy.id) {
+            candyHTML += `<li> ${u.name} </li>`
+          }    
+        })
+  $("#" + candy.taste + "Candies").append(candyHTML)
+    //   $("#" + candy.taste + "Candies").append("<a href='/candies/" + candy.id + "'>" + candy.name + "</a><br>");   
+     });
   });
-};
+});
+}
 postCandies();
 </script>

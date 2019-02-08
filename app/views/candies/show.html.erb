@@ -4,7 +4,7 @@
 
 <div class="candy">
   <h2 class="candyName">Candy: <%= @candy.name %></h2>
-  <p class="js-next" data-id="<%=@candy.id%>"></p>
+  <p class="js-next-candy" data-id="<%=@candy.id%>"></p>
   <p class="candyTaste">Taste: <%= @candy.taste %> candy</p>
   <p class="candyAppetite">Appetite: <%= @candy.appetite %></p>
   <p class="candyCost">Cost: $<%= @candy.cost %></p>
@@ -39,22 +39,22 @@
 <%end%>
 <br></br>
 <script type="text/javascript" charset="utf-8">
-  function getFormatted() {
-    return this.description + this.user_id
-  }
+function getFormatted() {
+  return this.description + this.user_id
+}
 
-   function getComments(can) {
-      $.get("/comments/", function(comments) {  
-        var can = parseInt($(".js-next").attr("data-id")) 
+function getComments() {
+  $.get("/comments/", function(comments) {  
+      var can = parseInt($(".js-next-candy").attr("data-id")) 
         comments.forEach(comment => {
           Object.getPrototypeOf(comment).getFormatted = () => {
             return comment.name;
           };
-        if(comment.candy_id == can) {
-    $("#allComments").append("Comment: " + comment.getFormatted() + "<br>");
+          if(comment.candy_id == can) {
+            $("#allComments").append("Comment: " + comment.getFormatted() + "<br>");
         }
       })
-     })
-    }
-   getComments()
+  })
+}
+getComments()
 </script>
