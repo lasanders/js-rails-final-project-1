@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   def index
     @candies= Candy.all
     @comments= Comment.all
-    @user = current_user
+    # @users = User.all
     respond_to do |format|
       format.json {render json: @comments}
       format.html {render :index}
