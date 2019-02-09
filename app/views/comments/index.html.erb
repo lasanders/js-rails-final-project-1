@@ -2,24 +2,3 @@
   <h2>Comments</h2>
 <br>
 </div>
-
-<script type="text/javascript" charset="utf-8">
-function postComments() {
-  $.getJSON("/candies/", function(candies) {
-    candies.forEach(candy => {   
-    let candyHTML = `<h4>${candy.name}</h4><br>`;
-      $.getJSON("/comments/", function(comments) {
-        comments.forEach(c => {
-          if(c.candy_id == candy.id) {
-            candyHTML += `<li><a href='/comments/ ${c.id}'> ${c.name}</a></li>`
-          }    
-        })
-  $(".Comment").append(candyHTML)
-     });
-  });
-});
-}
-postComments();
-
-</script>
-<br>
