@@ -1,19 +1,15 @@
 <div class="Comment">
-  <% @comments.each do |comment| %>  
-    <p class="commentCandyName">Candy: <%=comment.candy.name%> </p>
-    <p class="commentName">Comment: <%= comment.name %></p>
-  <% end %>
+<br>
 </div>
 
 <script type="text/javascript" charset="utf-8">
-  function getComments() {
-    $.getJSON("/comments/", function(comments) {
-      comments.forEach(comment => {   
-        $(".Comment").text("Candy: " + comment.candy.name);
-        $(".Comment").text("Comment: " + comment.name)
-      })  
-    });
-  };
-  getComments();
+  function getAllCom() {	
+    $.getJSON("/comments/", function(comments) {	
+      comments.forEach(comment => {   	
+        $(".Comment").append(comment.candy.name + ": " + "<li>" + comment.name +"<li>")
+      })  	
+    });	
+  };	
+getAllCom()
 </script>
 <br>

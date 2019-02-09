@@ -23,9 +23,9 @@ function postCandies() {
     candies.forEach(candy => {   
     let candyHTML = "<h3><a href='/candies/" + candy.id + "'>" + candy.name + "</a></h3><br>";
       $.getJSON("/comments/", function(comments) {
-        comments.forEach(u => {
-          if(u.candy_id == candy.id) {
-            candyHTML += `<li> ${u.name} </li>`
+        comments.forEach(c => {
+          if(c.candy_id == candy.id) {
+            candyHTML += `<li> ${c.name} </li>`
           }    
         })
   $("#" + candy.taste + "Candies").append(candyHTML)
