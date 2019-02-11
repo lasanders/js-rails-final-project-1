@@ -4,11 +4,13 @@ class Comment {
     this.user_id = user_id
     this.candy_id = candy_id
   };
-}
-Comment.prototype.getComments = () => {
+
+getFormatted () {
   return this.name + this.user_id
+  }
 }
-  
+
+  //comments index
 function postComments() {
   $.getJSON("/candies/", function(candies) {
     candies.forEach(candy => {   
@@ -38,3 +40,5 @@ postComments();
       });
     });
   });
+
+  
