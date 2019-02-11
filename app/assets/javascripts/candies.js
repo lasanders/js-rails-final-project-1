@@ -3,12 +3,9 @@
 function getCom() {
   $.get("/comments/", function(comments) {  
       const can = parseInt($(".js-next-candy").attr("data-id")) 
-      
       comments.forEach(comment=> {
         let com = new Comment(comment);
-       debugger
         if(com.candy_id == can) {
-    
           $("#allComments").append("Comment: " + com.getFormatted() + "<br>");
         }
       })
