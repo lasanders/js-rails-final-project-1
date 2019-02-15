@@ -11,5 +11,8 @@ class Candy < ApplicationRecord
     scope :sour, -> { where(taste: 'sour') }
     scope :sweet, -> {where(taste: 'sweet')}
 
+    def comment_contents
+        comments.map {|c| c.name}
+    end
 
 end
